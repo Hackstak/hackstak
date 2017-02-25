@@ -14,5 +14,7 @@
 Route::get('/', function () {return view('index');});
 Route::get('/home', 'HomeController@index');
 Route::get('/dashboard', 'DashboardController@Dashboard');
+Route::get('/about', 'FrontController@about');
+Route::get('/hackathons', 'FrontController@hackathons');
 
 Auth::routes();
