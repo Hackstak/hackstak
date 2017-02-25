@@ -13,25 +13,26 @@ class CreateUsersTable extends Migration
    */
   public function up()
   {
-      Schema::create('user', function (Blueprint $table) {
+      Schema::create('users', function (Blueprint $table) {
       $table->increments('id');
-      $table->string('email');
       $table->string('first');
       $table->string('last');
+      $table->string('email');
+      $table->string('phone');
       $table->string('username');
-      $table->tinyInteger('user');
-      $table->tinyInteger('admin');
-      $table->integer('phone');
+      $table->tinyInteger('user')->default(1);
+      $table->tinyInteger('admin')->default(0);
+      $table->string('password');
       $table->date('birthday');
-      $table->tinyInteger('college');
-      $table->integer('school_year');
+      $table->string('school_year');
       $table->string('team_name');
       $table->string('shirt_size');
       $table->string('major');
       $table->string('dietary_restrictions');
       $table->string('special_needs');
       $table->string('gender');
-      $table->integer('school_id')->unsigned();
+      $table->string('school');
+      $table->rememberToken();
       $table->timestamps();
     });
   }
@@ -44,6 +45,6 @@ class CreateUsersTable extends Migration
   public function down()
   {
     Schema::disableForeignKeyConstraints();
-    Schema::drop('user');
+    Schema::drop('users');
   }
 }

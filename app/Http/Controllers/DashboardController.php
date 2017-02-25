@@ -20,11 +20,11 @@ class DashboardController extends Controller
         $credits = array_filter($f, function($var){ return $var->amount >= 0; });
         $debits = array_filter($f, function($var){ return $var->amount < 0; });
 
-        return view('backend/finances', ['credits' => $credits, 'debits' => $debits]);
+        return view('backend/finances', compact('credits', 'debists'));
     }
 
 
-    public function postFinances(Request $request)
+    public function PostFinances(Request $request)
     {
       $this->validate($request, [
         "name" => "required",

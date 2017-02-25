@@ -20,8 +20,8 @@ class CreateAttendanceTable extends Migration
       $table->tinyInteger('accepted');
       $table->tinyInteger('rsvp');
       $table->tinyInteger('checked_in');
-      $table->integer('user')->unsigned();
-      $table->integer('hackathon')->unsigned();
+      $table->integer('user_id')->unsigned();
+      $table->integer('hackathon_id')->unsigned();
       $table->timestamps();
     });
   }

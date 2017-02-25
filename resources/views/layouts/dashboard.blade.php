@@ -54,9 +54,10 @@
                   @else
                     <li><a href="{{ url('/profile') }}">My Profile</a></li>
                   @endif
-                <li><a href="{{ url('/auth/logout') }}">Log Out</a></li>
+                <li><a href="{{ url('/logout') }}">Log Out</a></li>
                 @else
-                  <li><a href="{{ url('/auth/login') }}">Log In</a></li>
+                  <li><a href="{{ url('/login') }}">Log In</a></li>
+                  <li><a href="{{ url('/register') }}">Register</a></li>
                 @endif
               </ul>
               <hr class="visible-xs m-t">
