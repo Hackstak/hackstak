@@ -27,6 +27,13 @@ class CreateForeignKeys extends Migration
         $table->foreign('created_by')->references('id')->on('users');
 
       });
+
+      //foods table
+      Schema::table('foods', function($table) {
+        $table->foreign('hackathon_id')->references('id')->on('hackathons');
+
+      });
+
   }
 
   public function down()
