@@ -9,23 +9,11 @@
          <h6 class="dashhead-subtitle">Dashboard</h6>
          <h2 class="dashhead-title">Create Hackathon</h2>
       </div>
-      @if (count($errors) > 0)
-      <div class="alert alert-danger" role="alert">
-         <strong>Error!</strong>
-         <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-         </ul>
-      </div>
-      @endif
-      
+      @include('subviews/messages')
    </div>
-
  <div class="hr-divider m-t-md m-b">
    <h3 class="hr-divider-content hr-divider-heading">Create Event</h3>
  </div>
-
   <div class="container">
     <div class="col-md-7 ">
             <form method="POST" action="{{ url('dashboard/submit') }}" enctype="multipart/form-data" class="form-horizontal" role="form">

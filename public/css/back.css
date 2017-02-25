@@ -16,6 +16,10 @@ a:link, a:visited, a:active, a:hover {
   text-decoration: none;
 }
 
+form {
+  padding-top: 25px;
+}
+
 .navbar-fixed-top, .navbar-static-top {
     border-bottom: 0;
 }
