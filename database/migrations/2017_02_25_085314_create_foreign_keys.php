@@ -31,7 +31,6 @@ class CreateForeignKeys extends Migration
       //foods table
       Schema::table('foods', function($table) {
         $table->foreign('hackathon_id')->references('id')->on('hackathons');
-
       });
 
   }
