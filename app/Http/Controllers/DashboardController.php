@@ -55,6 +55,37 @@ class DashboardController extends Controller
 
     public function SubmitHackathon(Request $request)
     {
+
+      $this->validate($request, [
+        "name" => "required",
+        "startdate" => "required",
+        "enddate" => "required",
+        "address" => "required",
+        "city" => "required",
+        "state" => "",
+        "zipcode" => "required",
+        "registration_begin" => "required",
+        "registration_end" => "required",
+        "checkin_begin" => "required"
+      ]);
+
+      Hackathon::insert([
+        "name" => $request->input("name"),
+        "start_date" => $request->input("startdate"),
+        "end_date" => $request->input("enddate"),
+        "address" => $request->input("address"),
+        "city" => $request->input("city"),
+        "state" => $request->input("state"),
+        "zipcode" => $request->input("zipcode"),
+        "registration_begin" => $request->input("registration_begin"),
+        "registration_end" => $request->input("registration_end"),
+        "checkin_begin" => $request->input("checkin_begin")  
+      ]);
+
+
+
+
+
       return view('backend/dashboard')->with('success', 'Hackathon created!');
     }
 

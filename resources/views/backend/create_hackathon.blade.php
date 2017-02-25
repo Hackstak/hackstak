@@ -19,7 +19,7 @@
          </ul>
       </div>
       @endif
-      
+
    </div>
 
  <div class="hr-divider m-t-md m-b">
@@ -146,7 +146,7 @@
                 <div class="form-group">
                     <label for="checkin_end" class="col-sm-3 control-label">Registration End</label>
                     <div class="col-sm-9">
-                        <input type="datetime-local" name="checkin_end" class="form-control" autofocus required>
+                        <input type="datetime-local" name="checkin_end" class="form-control" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
