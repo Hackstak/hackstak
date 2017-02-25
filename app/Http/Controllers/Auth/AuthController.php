@@ -89,10 +89,10 @@ class AuthController extends Controller
       $user->special_needs = $request->special_needs;
       $user->save();
 
-      if (Auth::attempt($credentials)) {
-        return redirect()->action("DashboardController@Dashboard");
+      if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+        return redirect()->intended('dashboard');
       } else {
-        redirect()->action("Auth\AuthController@GetLogin");
+        return redirect()->action('Auth\AuthController@GetLogin')->withErrors("Unable to log you in.");
       }
     }
 }
