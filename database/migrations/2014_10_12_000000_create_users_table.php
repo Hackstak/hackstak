@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
       $table->string('password');
       $table->date('birthday');
       $table->string('school_year');
-      $table->string('team_name')->nullable();
       $table->string('shirt_size');
       $table->string('major')->nullable();
       $table->string('dietary_restrictions')->nullable();

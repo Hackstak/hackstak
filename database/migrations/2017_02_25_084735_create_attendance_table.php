@@ -22,6 +22,7 @@ class CreateAttendanceTable extends Migration
       $table->tinyInteger('checked_in');
       $table->integer('user_id')->unsigned();
       $table->integer('hackathon_id')->unsigned();
+      $table->string('team_name');
       $table->timestamps();
     });
   }
