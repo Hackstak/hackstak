@@ -25,11 +25,11 @@ class CreateUsersTable extends Migration
       $table->string('password');
       $table->date('birthday');
       $table->string('school_year');
-      $table->string('team_name');
+      $table->string('team_name')->nullable();
       $table->string('shirt_size');
-      $table->string('major');
-      $table->string('dietary_restrictions');
-      $table->string('special_needs');
+      $table->string('major')->nullable();
+      $table->string('dietary_restrictions')->nullable();
+      $table->string('special_needs')->nullable();
       $table->string('gender');
       $table->string('school');
       $table->rememberToken();

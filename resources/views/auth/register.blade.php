@@ -15,31 +15,31 @@
                 <div class="form-group">
                     <label for="firstName" class="col-sm-3 control-label">First Name*</label>
                     <div class="col-sm-9">
-                        <input type="text" name="first" class="form-control" value="{{old('first')}}" autofocus required>
+                        <input type="text" name="first" class="form-control" value="@if(old('first') != null){{old('first')}}@endif" autofocus required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="lastName" class="col-sm-3 control-label">Last Name*</label>
                     <div class="col-sm-9">
-                        <input type="text" name="last" class="form-control" value="{{old('last')}}" required>
+                        <input type="text" name="last" class="form-control" value="@if(old('last') != null){{old('last')}}@endif" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="col-sm-3 control-label">Email*</label>
                     <div class="col-sm-9">
-                        <input type="email" name="email" class="form-control" value="{{old('email')}}" required>
+                        <input type="email" name="email" class="form-control" value="@if(old('email') != null){{old('email')}}@endif" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="phone" class="col-sm-3 control-label">Phone*</label>
                     <div class="col-sm-9">
-                        <input type="text" name="phone" class="form-control" value="{{old('phone')}}" required>
+                        <input type="text" name="phone" class="form-control" value="@if(old('phone') != null){{old('phone')}}@endif" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="username" class="col-sm-3 control-label">Username*</label>
                     <div class="col-sm-9">
-                        <input type="text" name="username" class="form-control" value="{{old('username')}}" required>
+                        <input type="text" name="username" class="form-control" value="@if(old('username') != null){{old('username')}}@endif" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -57,19 +57,19 @@
                 <div class="form-group">
                     <label for="birthday" class="col-sm-3 control-label">Date of Birth</label>
                     <div class="col-sm-9">
-                        <input type="date" name="birthday" value="{{old('birthday')}}" class="form-control">
+                        <input type="date" name="birthday" value="@if(old('birthday') != null){{old('birthday')}}@endif" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="school" class="col-sm-3 control-label">School*</label>
                     <div class="col-sm-9">
-                        <input type="text" name="school" value="{{old('school')}}" class="form-control" required>
+                        <input type="text" name="school" value="@if(old('school') != null){{old('school')}}@endif" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="major" class="col-sm-3 control-label">Major</label>
                     <div class="col-sm-9">
-                        <input type="text" name="major" value="{{old('major')}}" class="form-control">
+                        <input type="text" name="major" value="@if(old('major') != null){{old('major')}}@endif" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
@@ -100,7 +100,7 @@
                 <div class="form-group">
                     <label for="team_name" class="col-sm-3 control-label">Team Name</label>
                     <div class="col-sm-9">
-                        <input type="text" name="team_name" value="{{old('team_name')}}" class="form-control">
+                        <input type="text" name="team_name" value="@if(old('team_name') != null){{old('team_name')}}@endif" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
@@ -120,13 +120,13 @@
                 <div class="form-group">
                     <label for="dietary_restrictions" class="col-sm-3 control-label">Dietary Restrictions</label>
                     <div class="col-sm-9">
-                        <input type="text" name="dietary_restrictions" value="{{old('dietary_restrictions')}}" class="form-control">
+                        <input type="text" name="dietary_restrictions" value="@if(old('dietary_restrictions') != null){{old('dietary_restrictions')}}@endif" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="special_needs" class="col-sm-3 control-label">Special Needs</label>
                     <div class="col-sm-9">
-                        <input type="text" name="special_needs" value="{{old('special_needs')}}" class="form-control">
+                        <input type="text" name="special_needs" value="@if(old('special_needs') != null){{old('special_needs')}}@endif" class="form-control">
                     </div>
                 </div>
 
