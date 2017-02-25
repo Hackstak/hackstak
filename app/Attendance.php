@@ -15,7 +15,7 @@ class Attendance extends Model
      * @var array
      */
     protected $fillable = [
-        'user', 'hackathon', 'organizer', 'registered', 'accepted', 'rsvp', 'checked_in'
+        'user', 'hackathon', 'organizer', 'registered', 'accepted', 'rsvp', 'checked_in', 'team_name'
       ];
 
     public function user()
