@@ -47,11 +47,16 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
+              @if(Auth::check())
+              <li><a href="{{ url( '/dashboard' ) }}">Dashboard</a></li>
+              <li><a href="{{ url( '/logout' ) }}">Logout</a></li>
+              @else
               <li><a href="{{ url( '/login' ) }}">Login</a></li>
               <li><a href="{{ url( '/register' ) }}">Register</a></li>
+              @endif
             </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
+          </div>
+        </div>
       </nav>
 
 

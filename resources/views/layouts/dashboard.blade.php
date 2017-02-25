@@ -30,31 +30,16 @@
               </form>
               <ul class="nav nav-pills nav-stacked">
                 <li class="nav-header">Dashboards</li>
-                @if (Request::is('dashboard'))
-                  <li class="active"><a href="{{ url('/dashboard') }}">Overview</a></li>
-                  <li><a href="{{ url('/dashboard/finances') }}">Finances</a></li>
-                @else
-                  <li><a href="{{ url('/dashboard') }}">Overview</a></li>
-                  <li><a href="{{ url('/dashboard/finances') }}">Finances</a></li>
-
-                @endif
+                <li @if(Request::is('dashboard'))class="active"@endif><a href="{{ url('/dashboard') }}">Overview</a></li>
+                <li @if(Request::is('dashboard/create'))class="active"@endif><a href="{{ url('/dashboard/create') }}">Create Hackathon</a></li>
+                <li @if(Request::is('dashboard/finances'))class="active"@endif><a href="{{ url('/dashboard/finances') }}">Finances</a></li>
                 <li class="nav-header">My Profile</li>
                 @if(Auth::check())
                   @if (Auth::user()->admin == 1)
-                    @if (Request::is('admin'))
-                      <li class="active"><a href="{{ url('/admin') }}">Administration</a></li>
-                      <li><a href="{{ url('/dashboard/create') }}">Create Hackathon</a></li>
-                      @else
-                      <li><a href="{{ url('/admin') }}">Administration</a></li>
-                      <li><a href="{{ url('/dashboard/create') }}">Create Hackathon</a></li>
-                    @endif
+                    <li @if(Request::is('dashboard/admin'))class="active"@endif><a href="{{ url('/dashboard/admin') }}">Administration</a></li>
                   @endif
-                  @if (Request::is('profile'))
-                    <li class="active"><a href="{{ url('/profile') }}">My Profile</a></li>
-                  @else
-                    <li><a href="{{ url('/profile') }}">My Profile</a></li>
-                  @endif
-                <li><a href="{{ url('/logout') }}">Log Out</a></li>
+                  <li @if(Request::is('dashboard/profile'))class="active"@endif><a href="{{ url('/dashboard/profile') }}">My Profile</a></li>
+                  <li><a href="{{ url('/logout') }}">Log Out</a></li>
                 @else
                   <li><a href="{{ url('/login') }}">Log In</a></li>
                   <li><a href="{{ url('/register') }}">Register</a></li>
