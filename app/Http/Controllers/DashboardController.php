@@ -10,6 +10,7 @@ use App\Finance;
 use App\Hackathon;
 use App\User;
 use App\Food;
+use App\Prize;
 
 class DashboardController extends Controller
 {
@@ -128,6 +129,37 @@ class DashboardController extends Controller
             ]);
 
       return redirect()->action("DashboardController@Food");
+    }
+
+    public function Prize()
+    {
+      $prizes = json_decode(Prize::all());
+      return view('backend/prize', compact('prizes'));
+    }
+
+    public function PostPrize(Request $request)
+    {
+      $this->validate($request, [
+        "name" => "required",
+        "link" => "required",
+        "cost_per_item" => "required",
+        "total_per_team" => "required",
+        "purchased" => "required",
+        "delivered" => "required"
+      ]);
+
+      Prize::insert(
+            [
+              "name" => $request->input("name"),
+              "link" => $request->input("link"),
+              "cost_per_item" => $request->input("cost_per_item"),
+              "total_per_team" => $request->input("total_per_team"),
+              "purchased" => $request->input("purchased"),
+              "delivered" => $request->input("delivered"),
+              "hackathon_id" => 1
+            ]);
+
+      return redirect()->action("DashboardController@Prize");
     }
 
     public function Profile()
