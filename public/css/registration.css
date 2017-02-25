@@ -1,12 +1,13 @@
 body {
-    background-color: #eee;
+    background-color: #252830 !important;
 }
+
 
 *[role="form"] {
     max-width: 530px;
     padding: 15px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: #323642;
     border-radius: 0.3em;
 }
 
