@@ -11,40 +11,20 @@
     @include('subviews/messages')
   </div>
   <div class="hr-divider m-t-md m-b">
-    <h3 class="hr-divider-content hr-divider-heading">Numbers</h3>
+    <h3 class="hr-divider-content hr-divider-heading">Your Hackathons</h3>
   </div>
   <div class="row statcards">
-    <div class="col-sm-6 col-lg-3 m-b">
-      <div class="statcard statcard-success">
+
+    @foreach($hackathons as $h)
+    <div class="col-md-6 col-lg-6 m-b">
+      <div class="statcard {{ $color_strings[array_rand($color_strings, 1)] }}">
         <div class="p-a">
-          <span class="statcard-desc">Things</span>
-          <h2 class="statcard-number">1234</h2>
+          <span class="statcard-desc">{{ $h->city . ", " . $h->state }}</span>
+          <h2 class="statcard-number">{{ $h->name }}</h2>
         </div>
       </div>
     </div>
-    <div class="col-sm-6 col-lg-3 m-b">
-      <div class="statcard statcard-info">
-        <div class="p-a">
-          <span class="statcard-desc">Things</span>
-          <h2 class="statcard-number">1234</h2>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-lg-3 m-b">
-      <div class="statcard statcard-warning">
-        <div class="p-a">
-          <span class="statcard-desc">Things</span>
-          <h2 class="statcard-number">1234</h2>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-lg-3 m-b">
-      <div class="statcard statcard-danger">
-        <div class="p-a">
-          <span class="statcard-desc">Things</span>
-          <h2 class="statcard-number">1234</h2>
-        </div>
-      </div>
-    </div>
+    @endforeach
+
   </div>
 @endsection
