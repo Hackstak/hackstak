@@ -1,12 +1,12 @@
 @extends('layouts.dashboard')
-@section('title', 'Food Planner')
+@section('title', 'Prize Planner')
 
 @section('content')
 <div class="col-sm-9 content">
   <div class="dashhead">
     <div class="dashhead-titles">
       <h6 class="dashhead-subtitle">Dashboards</h6>
-      <h2 class="dashhead-title">Food Planner</h2>
+      <h2 class="dashhead-title">Prize Planner</h2>
     </div>
     @include('subviews/messages')
   </div>
@@ -19,41 +19,34 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Add Entry</h4>
         </div>
-        <form id="new-entry-form" method="POST" action="{{ url('/dashboard/food') }}">
+        <form id="new-entry-form" method="POST" action="{{ url('/dashboard/prize') }}">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="modal-body">
             <div class="row">
               <div class="col-md-1"></div>
-              <input id="new-entry-name" type="text" name="company_name" class="form-control col-md-4" placeholder="Company Name">
+              <input id="new-entry-name" type="text" name="name" class="form-control col-md-4" placeholder="Name">
               <div class="col-md-2"></div>
-              <input id="new-entry-amount" type="text" name="phone" class="form-control col-md-4" placeholder="Phone Number">
+              <input id="new-entry-amount" type="text" name="link" class="form-control col-md-4" placeholder="Purchase Link">
             </div>
             <br>
             <div class="row">
               <div class="col-md-1"></div>
-              <input id="new-entry-name" type="text" name="cost_per_person" class="form-control col-md-4" placeholder="Cost per Person">
+              <input id="new-entry-name" type="text" name="cost_per_item" class="form-control col-md-4" placeholder="Cost Per Item">
               <div class="col-md-2"></div>
-              <input id="new-entry-amount" type="text" name="total_estimate" class="form-control col-md-4" placeholder="Total Estimate">
+              <input id="new-entry-amount" type="text" name="total_per_team" class="form-control col-md-4" placeholder="Total Per Team">
             </div>
             <br>
             <div class="row">
+              <div class="col-md-1"></div>
+              <select class="col-md-4" name="purchased" class="form-control">
+                  <option value>Purchased?</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+              </select>
+
               <div class="col-md-2"></div>
-              <select class="col-md-2" name="contacted" class="form-control">
-                  <option value>Contacted?</option>
-                  <option value="1">Yes</option>
-                  <option value="0">No</option>
-              </select>
-
-              <div class="col-md-1"></div>
-              <select class="col-md-2" name="will_deliver" class="form-control">
-                  <option value>Will Deliver?</option>
-                  <option value="1">Yes</option>
-                  <option value="0">No</option>
-              </select>
-
-              <div class="col-md-1"></div>
-              <select class="col-md-2" name="confirmed" class="form-control">
-                  <option value>Confirmed?</option>
+              <select class="col-md-4" name="delivered" class="form-control">
+                  <option value>Delivered?</option>
                   <option value="1">Yes</option>
                   <option value="0">No</option>
               </select>
@@ -75,7 +68,7 @@
   </div>
 
   <div class="hr-divider m-t-md m-b">
-    <h3 class="hr-divider-content hr-divider-heading">Food Planner</h3>
+    <h3 class="hr-divider-content hr-divider-heading">Prize Planner</h3>
   </div>
 
 
@@ -83,39 +76,32 @@
       <table class="table table-striped" id="debits-table">
       <thead>
         <tr>
-          <th>Company Name</th>
-          <th>Cost per Person</th>
-          <th>Total Estimate</th>
-          <th>Phone Number</th>
-          <th class="text-center">Contacted</th>
-          <th class="text-center">Will Deliver</th>
-          <th class="text-center">Confirmed</th>
+          <th>Name</th>
+          <th>Cost per Item</th>
+          <th>Total Per Team</th>
+          <th>Purchase Link</th>
+          <th class="text-center">Purchased</th>
+          <th class="text-center">Delivered</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($foods as $f)
+        @foreach($prizes as $p)
         <tr>
-          <td>{{ $f->company }}</td>
-          <td>${{ $f->cost_per_person }}</td>
-          <td>${{ $f->total_estimate }}</td>
-          <td>{{ $f->phone }}</td>
+          <td>{{ $p->name }}</td>
+          <td>${{ $p->cost_per_item }}</td>
+          <td>${{ $p->total_per_team }}</td>
+          <td><a href="{{ $p->link }}">{{ $p->link }}</a></td>
 
-          @if($f->contacted == true)
+          @if($p->purchased == true)
           <td class="checkable_td_one"><span class="checked icon icon-check center-block text-center"></span></td>
           @else
           <td class="checkable_td_one"><span class="icon icon-check center-block text-center"></span></td>
           @endif
 
-          @if($f->will_deliver == true)
+          @if($p->delivered == true)
           <td class="checkable_td_two"><span class="checked icon icon-check center-block text-center"></span></td>
           @else
           <td class="checkable_td_two"><span class="icon icon-check center-block text-center"></span></td>
-          @endif
-
-          @if($f->confirmed == true)
-          <td class="checkable_td_three"><span class="checked icon icon-check center-block text-center"></span></td>
-          @else
-          <td class="checkable_td_three"><span class="icon icon-check center-block text-center"></span></td>
           @endif
 
 
@@ -125,5 +111,5 @@
     </table>
   </div>
 </div>
-  <script type="text/javascript" src="/js/dashboard/food.js"></script>
+<script type="text/javascript" src="/js/dashboard/food.js"></script>
 @endsection

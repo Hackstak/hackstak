@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Finance;
 use App\Hackathon;
 use App\User;
+use App\Food;
+use App\Prize;
 
 class DashboardController extends Controller
 {
@@ -38,8 +40,7 @@ class DashboardController extends Controller
         "amount" => "required"
       ]);
 
-      \DB::table("finances")
-        ->insert(
+      Finance::insert(
             [
               "name" => $request->input("name"),
               "amount" => $request->input("amount"),
@@ -55,7 +56,6 @@ class DashboardController extends Controller
     {
       return view('backend/create_hackathon');
     }
-
 
     public function SubmitHackathon(Request $request)
     {
@@ -90,6 +90,7 @@ class DashboardController extends Controller
       $hackathon->save();
 
       return redirect()->action("DashboardController@Dashboard")->with('success', 'Hackathon created!');
+
     }
 
     public function Administration()
@@ -99,7 +100,66 @@ class DashboardController extends Controller
 
     public function Food()
     {
-      return view('backend/food');
+      $foods = json_decode(Food::all());
+      return view('backend/food', compact('foods'));
+    }
+
+    public function PostFood(Request $request)
+    {
+      $this->validate($request, [
+        "company_name" => "required",
+        "phone" => "required",
+        "cost_per_person" => "required",
+        "total_estimate" => "required",
+        "contacted" => "required",
+        "will_deliver" => "required",
+        "confirmed" => "required"
+      ]);
+
+      Food::insert(
+            [
+              "company" => $request->input("company_name"),
+              "phone" => $request->input("phone"),
+              "cost_per_person" => $request->input("cost_per_person"),
+              "total_estimate" => $request->input("total_estimate"),
+              "contacted" => $request->input("contacted"),
+              "will_deliver" => $request->input("will_deliver"),
+              "confirmed" => $request->input("confirmed"),
+              "hackathon_id" => 1
+            ]);
+
+      return redirect()->action("DashboardController@Food");
+    }
+
+    public function Prize()
+    {
+      $prizes = json_decode(Prize::all());
+      return view('backend/prize', compact('prizes'));
+    }
+
+    public function PostPrize(Request $request)
+    {
+      $this->validate($request, [
+        "name" => "required",
+        "link" => "required",
+        "cost_per_item" => "required",
+        "total_per_team" => "required",
+        "purchased" => "required",
+        "delivered" => "required"
+      ]);
+
+      Prize::insert(
+            [
+              "name" => $request->input("name"),
+              "link" => $request->input("link"),
+              "cost_per_item" => $request->input("cost_per_item"),
+              "total_per_team" => $request->input("total_per_team"),
+              "purchased" => $request->input("purchased"),
+              "delivered" => $request->input("delivered"),
+              "hackathon_id" => 1
+            ]);
+
+      return redirect()->action("DashboardController@Prize");
     }
 
     public function Profile()
