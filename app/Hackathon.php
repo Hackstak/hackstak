@@ -7,7 +7,7 @@ use App\User;
 
 class Hackathon extends Model
 {
-  protected $table = 'hackathon';
+  protected $table = 'hackathons';
   /**
    * The attributes that are mass assignable.
    *

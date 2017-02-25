@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Finance;
+use App\Hackathon;
 
 class DashboardController extends Controller
 {
     public function Dashboard()
     {
-        return view('backend/dashboard');
+      $hackathons = json_decode(Hackathon::all());
+      $color_strings = [ "statcard-info", "statcard-danger", "statcard-primary", "statcard-success", "statcard-warning"];
+      return view('backend/dashboard', compact('hackathons', "color_strings"));
     }
 
     public function Finances()
