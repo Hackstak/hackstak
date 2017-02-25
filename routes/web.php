@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/dashboard/create', 'DashboardController@CreateHackathon');
   Route::post('dashboard/submit', 'DashboardController@SubmitHackathon');
   Route::get('/dashboard/admin', 'DashboardController@Administration');
+  Route::get('/dashboard/profile', 'DashboardController@Profile');
+  Route::post('/dashboard/profile', 'DashboardController@UpdateProfile');
 });
 
 // Authentication routes...

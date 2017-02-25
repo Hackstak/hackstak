@@ -65,7 +65,6 @@ class AuthController extends Controller
         'major' => 'max:255',
         'school_year' => 'required|string|max:255',
         'gender' => 'required|string|max:255',
-        'team_name' => 'max:255',
         'shirt_size' => 'required|string|max:255',
         'dietary_restrictions' => 'max:255',
         'special_needs' => 'max:255',
@@ -83,7 +82,6 @@ class AuthController extends Controller
       $user->major = $request->major;
       $user->school_year = $request->school_year;
       $user->gender = $request->gender;
-      $user->team_name = $request->team_name;
       $user->shirt_size = $request->shirt_size;
       $user->dietary_restrictions = $request->dietary_restrictions;
       $user->special_needs = $request->special_needs;
