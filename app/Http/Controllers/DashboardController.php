@@ -10,4 +10,9 @@ class DashboardController extends Controller
     {
         return view('backend/dashboard');
     }
+
+    public function Finances()
+    {
+        return view('backend/finances');
+    }
 }
