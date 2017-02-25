@@ -13,6 +13,6 @@
 
 Route::get('/', function () {return view('welcome');});
 Route::get('/home', 'HomeController@index');
-Route::get('/dashboard', function () {return view('backend/dashboard');});
+Route::get('/dashboard', 'DashboardController@Dashboard');
 
 Auth::routes();
