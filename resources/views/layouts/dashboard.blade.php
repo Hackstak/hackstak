@@ -35,15 +35,18 @@
                   <li><a href="{{ url('/dashboard/finances') }}">Finances</a></li>
                 @else
                   <li><a href="{{ url('/dashboard') }}">Overview</a></li>
-                  <li class="active"><a href="{{ url('/dashboard/finances') }}">Finances</a></li>
+                  <li><a href="{{ url('/dashboard/finances') }}">Finances</a></li>
+
                 @endif
                 <li class="nav-header">My Profile</li>
                 @if(Auth::check())
                   @if (Auth::user()->admin == 1)
                     @if (Request::is('admin'))
                       <li class="active"><a href="{{ url('/admin') }}">Administration</a></li>
+                      <li><a href="{{ url('/dashboard/create') }}">Create Hackathon</a></li>
                       @else
                       <li><a href="{{ url('/admin') }}">Administration</a></li>
+                      <li><a href="{{ url('/dashboard/create') }}">Create Hackathon</a></li>
                     @endif
                   @endif
                   @if (Request::is('profile'))
