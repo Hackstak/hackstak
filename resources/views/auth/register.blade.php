@@ -8,7 +8,8 @@
 @section('content')
 
 <div class="container">
-            <form method="POST" action="{{ url('/Auth/validator') }}" enctype="multipart/form-data" class="form-horizontal" role="form">
+            <form method="POST" action="{{ url('Auth/register') }}" enctype="multipart/form-data" class="form-horizontal" role="form">
+               {{ csrf_field() }}
                 <h2>Registration Form</h2>
                 <div class="form-group">
                     <label for="firstName" class="col-sm-3 control-label">First Name</label>
