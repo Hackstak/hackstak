@@ -32,8 +32,10 @@
                 <li class="nav-header">Dashboards</li>
                 @if (Request::is('dashboard'))
                   <li class="active"><a href="{{ url('/dashboard') }}">Overview</a></li>
+                  <li><a href="{{ url('/dashboard/finances') }}">Finances</a></li>
                 @else
                   <li><a href="{{ url('/dashboard') }}">Overview</a></li>
+                  <li class="active"><a href="{{ url('/dashboard/finances') }}">Finances</a></li>
                 @endif
                 <li class="nav-header">My Profile</li>
                 @if(Auth::check())

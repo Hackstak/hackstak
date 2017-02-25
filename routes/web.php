@@ -11,8 +11,13 @@
 |
 */
 
-Route::get('/', function () {return view('welcome');});
+Route::get('/', function () {return view('index');});
 Route::get('/home', 'HomeController@index');
 Route::get('/dashboard', 'DashboardController@Dashboard');
+Route::get('/dashboard/finances', 'DashboardController@Finances');
+Route::post('/dashboard/finances', 'DashboardController@postFinances');
+
+Route::get('/about', 'FrontController@about');
+Route::get('/hackathons', 'FrontController@hackathons');
 
 Auth::routes();
