@@ -18,13 +18,13 @@ class Hackathon extends Model
       'updated_by', 'state', 'zip', 'city', 'registration_begin', 'registration_end', 'checkin_begin',
       'checkin_end', 'current_balance'
     ];
-  public function created_by()
+  public function createdBy()
   {
-    return $this->hasMany('App\User');
+    return $this->belongsTo('App\User', 'created_by');
   }
 
-  public function updated_by()
+  public function updatedBy()
   {
-    return $this->hasMany('App\User');
+    return $this->belongsTo('App\User', 'created_by');
   }
 }
