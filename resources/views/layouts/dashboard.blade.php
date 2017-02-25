@@ -33,6 +33,7 @@
                 <li @if(Request::is('dashboard'))class="active"@endif><a href="{{ url('/dashboard') }}">Overview</a></li>
                 <li @if(Request::is('dashboard/create'))class="active"@endif><a href="{{ url('/dashboard/create') }}">Create Hackathon</a></li>
                 <li @if(Request::is('dashboard/finances'))class="active"@endif><a href="{{ url('/dashboard/finances') }}">Finances</a></li>
+                <li @if(Request::is('dashboard/food'))class="active"@endif><a href="{{ url('/dashboard/food') }}">Food Planner</a></li>
                 <li class="nav-header">My Profile</li>
                 @if(Auth::check())
                   @if (Auth::user()->admin == 1)
