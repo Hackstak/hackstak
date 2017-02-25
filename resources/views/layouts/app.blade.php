@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>HackStak | @yield('title')</title>
+    <title>Hackstak | @yield('title')</title>
 
     @yield('head')
     <!-- Styles -->
@@ -55,8 +55,7 @@
       </nav>
 
 
-
-        @yield('content')
+@yield('content')
 
     <!-- Scripts -->
 </body>
