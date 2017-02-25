@@ -23,7 +23,7 @@ class CreateFoodsTable extends Migration
           $table->tinyInteger('will_deliver');
           $table->tinyInteger('confirmed');
           $table->integer('hackathon_id')->unsigned();
-
+          $table->timestamps();
       });
     }
 

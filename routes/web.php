@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/dashboard/food', 'DashboardController@Food');
   Route::get('/dashboard/create', 'DashboardController@CreateHackathon');
   Route::post('dashboard/submit', 'DashboardController@SubmitHackathon');
+  Route::get('/dashboard/admin', 'DashboardController@Administration');
 });
 
 // Authentication routes...

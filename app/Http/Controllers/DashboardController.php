@@ -58,6 +58,11 @@ class DashboardController extends Controller
       return view('backend/dashboard')->with('success', 'Hackathon created!');
     }
 
+    public function Administration()
+    {
+      return view('backend/admin');
+    }
+
     public function Food()
     {
       return view('backend/food');
