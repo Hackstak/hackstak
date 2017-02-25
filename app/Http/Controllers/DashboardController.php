@@ -70,27 +70,27 @@ class DashboardController extends Controller
         "zipcode" => "required",
         "registration_begin" => "required",
         "registration_end" => "required",
-        "checkin_begin" => "required"
+        "checkin_begin" => "required",
+        "checkin_end" => "required"
       ]);
 
-      Hackathon::insert([
-        "name" => $request->input("name"),
-        "start_date" => $request->input("startdate"),
-        "end_date" => $request->input("enddate"),
-        "address" => $request->input("address"),
-        "city" => $request->input("city"),
-        "state" => $request->input("state"),
-        "zipcode" => $request->input("zipcode"),
-        "registration_begin" => $request->input("registration_begin"),
-        "registration_end" => $request->input("registration_end"),
-        "checkin_begin" => $request->input("checkin_begin")
-      ]);
+      $hackathon = new Hackathon();
+      $hackathon->name = $request->input("name");
+      $hackathon->start_date = $request->input("startdate");
+      $hackathon->end_date = $request->input("enddate");
+      $hackathon->address = $request->input("address");
+      $hackathon->city = $request->input("city");
+      $hackathon->state = $request->input("state");
+      $hackathon->zip = $request->input("zipcode");
+      $hackathon->registration_begin = $request->input("registration_begin");
+      $hackathon->registration_end = $request->input("registration_end");
+      $hackathon->checkin_begin = $request->input("checkin_begin");
+      $hackathon->checkin_end = $request->input("checkin_end");
+      $hackathon->createdBy()->associate(Auth::user());
+      $hackathon->save();
 
+      return redirect()->action("DashboardController@Dashboard")->with('success', 'Hackathon created!');
 
-
-
-
-      return view('backend/dashboard')->with('success', 'Hackathon created!');
     }
 
     public function Administration()

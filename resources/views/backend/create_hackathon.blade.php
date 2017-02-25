@@ -132,7 +132,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="checkin_end" class="col-sm-3 control-label">Registration End</label>
+                    <label for="checkin_end" class="col-sm-3 control-label">Check-in End</label>
                     <div class="col-sm-9">
                         <input type="datetime-local" name="checkin_end" class="form-control" autofocus>
                     </div>
@@ -153,15 +153,6 @@
                     <label for="instagram" class="col-sm-3 control-label">Instagram</label>
                     <div class="col-sm-9">
                         <input type="text" name="instagram" placeholder="eg. https://www.instagram.com/page" class="form-control" autofocus>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-9 col-sm-offset-3">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox">I accept <a href="#">terms</a>
-                            </label>
-                        </div>
                     </div>
                 </div>
                 <div class="form-group">
