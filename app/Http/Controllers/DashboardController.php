@@ -43,4 +43,17 @@ class DashboardController extends Controller
 
       return redirect()->action("DashboardController@Finances");
     }
+
+    public function CreateHackathon()
+    {
+
+        return view('backend/create_hackathon');
+    }
+
+
+    public function SubmitHackathon(Request $request)
+    {
+        return view('backend/dashboard')->with('success', 'Hackathon created!');
+
+    }
 }
