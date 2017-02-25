@@ -13,11 +13,11 @@ class CreateFinanceTable extends Migration
    */
   public function up()
   {
-    Schema::create('finance', function (Blueprint $table) {
+    Schema::create('finances', function (Blueprint $table) {
         $table->increments('id');
         $table->string('name');
         $table->integer('amount');
-        $table->integer('hackathon')->unsigned();
+        $table->integer('hackathon_id')->unsigned();
         $table->integer('updated_by')->unsigned();
         $table->integer('created_by')->unsigned();
 
@@ -32,7 +32,7 @@ class CreateFinanceTable extends Migration
   public function down()
   {
     Schema::disableForeignKeyConstraints();
-    Schema::drop('finance');
+    Schema::drop('finances');
   }
 
 }

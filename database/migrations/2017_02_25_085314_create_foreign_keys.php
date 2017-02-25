@@ -8,29 +8,23 @@ class CreateForeignKeys extends Migration
 {
   public function up()
   {
-      //user table
-      Schema::table('user', function($table) {
-        $table->foreign('school_id')->references('id')->on('school');
-
-      });
-
       //hackathon table
-      Schema::table('hackathon', function($table) {
-        $table->foreign('created_by')->references('id')->on('user');
-        $table->foreign('updated_by')->references('id')->on('user');
+      Schema::table('hackathons', function($table) {
+        $table->foreign('created_by')->references('id')->on('users');
+        $table->foreign('updated_by')->references('id')->on('users');
       });
 
       //attendance table
       Schema::table('attendance', function($table) {
-        $table->foreign('user')->references('id')->on('user');
-        $table->foreign('hackathon')->references('id')->on('hackathon');
+        $table->foreign('user_id')->references('id')->on('users');
+        $table->foreign('hackathon_id')->references('id')->on('hackathons');
       });
 
       //finance table
-      Schema::table('finance', function($table) {
-        $table->foreign('hackathon')->references('id')->on('hackathon');
-        $table->foreign('updated_by')->references('id')->on('user');
-        $table->foreign('created_by')->references('id')->on('user');
+      Schema::table('finances', function($table) {
+        $table->foreign('hackathon_id')->references('id')->on('hackathons');
+        $table->foreign('updated_by')->references('id')->on('users');
+        $table->foreign('created_by')->references('id')->on('users');
 
       });
   }

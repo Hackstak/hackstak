@@ -12,12 +12,20 @@
 */
 
 Route::get('/', function () {return view('index');});
-Route::get('/home', 'HomeController@index');
-Route::get('/dashboard', 'DashboardController@Dashboard');
-Route::get('/dashboard/finances', 'DashboardController@Finances');
-Route::post('/dashboard/finances', 'DashboardController@postFinances');
+Route::get('/about', 'FrontController@About');
+Route::get('/hackathons', 'FrontController@Hackathons');
 
-Route::get('/about', 'FrontController@about');
-Route::get('/hackathons', 'FrontController@hackathons');
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/dashboard', 'DashboardController@Dashboard');
+  Route::get('/dashboard/finances', 'DashboardController@Finances');
+  Route::post('/dashboard/finances', 'DashboardController@PostFinances');
+});
 
-Auth::routes();
+// Authentication routes...
+Route::get('login', 'Auth\AuthController@GetLogin');
+Route::post('login', 'Auth\AuthController@Login');
+Route::get('logout', 'Auth\AuthController@GetLogout');
+
+// Registration routes...
+Route::get('register', 'Auth\AuthController@GetRegister');
+Route::post('register', 'Auth\AuthController@Register');

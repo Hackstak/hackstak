@@ -13,17 +13,17 @@ class FrontController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function index()
+    public function Index()
     {
         return view('index');
     }
 
-    public function about()
+    public function About()
     {
         return view('about');
     }
 
-    public function hackathons()
+    public function Hackathons()
     {
         return view('hackathons');
     }

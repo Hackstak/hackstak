@@ -13,7 +13,7 @@ class CreateHackathonTable extends Migration
    */
   public function up()
   {
-      Schema::create('hackathon', function (Blueprint $table) {
+      Schema::create('hackathons', function (Blueprint $table) {
       $table->increments('id');
       $table->string('name');
       $table->date('start_date');
@@ -44,6 +44,6 @@ class CreateHackathonTable extends Migration
   public function down()
   {
     Schema::disableForeignKeyConstraints();
-    Schema::drop('hackathon');
+    Schema::drop('hackathons');
   }
 }
