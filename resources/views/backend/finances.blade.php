@@ -50,7 +50,7 @@
   </div>
 
   <div class="hr-divider m-t-md m-b">
-    <h3 class="hr-divider-content hr-divider-heading">Finances Brother</h3>
+    <h3 class="hr-divider-content hr-divider-heading">Finances</h3>
   </div>
 
   <div class="row">

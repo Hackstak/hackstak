@@ -46,14 +46,17 @@ class DashboardController extends Controller
 
     public function CreateHackathon()
     {
-
-        return view('backend/create_hackathon');
+      return view('backend/create_hackathon');
     }
 
 
     public function SubmitHackathon(Request $request)
     {
-        return view('backend/dashboard')->with('success', 'Hackathon created!');
+      return view('backend/dashboard')->with('success', 'Hackathon created!');
+    }
 
+    public function Food()
+    {
+      return view('backend/food');
     }
 }
