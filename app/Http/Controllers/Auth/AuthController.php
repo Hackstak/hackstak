@@ -58,17 +58,17 @@ class AuthController extends Controller
         'email' => 'required|email|max:255|unique:users,email',
         'phone' => 'required|string|max:255',
         'username' => 'required|string|max:255|unique:users,username',
-        'password' => 'string|min:3|max:255|confirmed',
-        'password_confirmation' => 'string|min:3|max:255',
+        'password' => 'required|string|min:3|max:255|confirmed',
+        'password_confirmation' => 'required|string|min:3|max:255',
         'birthday' => 'required|string|max:255',
         'school' => 'required|string|max:255',
-        'major' => 'string|max:255',
+        'major' => 'max:255',
         'school_year' => 'required|string|max:255',
         'gender' => 'required|string|max:255',
-        'team_name' => 'string|max:255',
+        'team_name' => 'max:255',
         'shirt_size' => 'required|string|max:255',
-        'dietary_restrictions' => 'string|max:255',
-        'special_needs' => 'string|max:255',
+        'dietary_restrictions' => 'max:255',
+        'special_needs' => 'max:255',
       ]);
 
       $user = new User();
