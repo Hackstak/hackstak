@@ -1,23 +1,21 @@
 <?php
 
 namespace App;
-use App\Hackathon;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Hackathon;
 
-class Food extends Model
+class Prize extends Model
 {
-  protected $table = 'foods';
+  protected $table = 'prizes';
   /**
    * The attributes that are mass assignable.
    *
    * @var array
    */
   protected $fillable = [
-      'company', 'cost_per_person', 'total_estimate', 'phone', 'contacted',
-      'will_deliver', 'confirmed', 'hackathon_id'
+      'name', 'cost_per_item', 'total_per_team', 'purchased', 'delivered', 'link', 'hackathon_id'
     ];
-
   public function hackathon_id()
   {
     return $this->hasMany('App\Hackathon');
