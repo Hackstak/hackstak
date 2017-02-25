@@ -98,12 +98,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="team_name" class="col-sm-3 control-label">Team Name</label>
-                    <div class="col-sm-9">
-                        <input type="text" name="team_name" value="@if(old('team_name') != null){{old('team_name')}}@endif" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
                     <label for="shirt_size" class="col-sm-3 control-label">Shirt Size*</label>
                     <div class="col-sm-9">
                       <select name="shirt_size" class="form-control" required>
