@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Finance;
 use App\Hackathon;
 use App\User;
+use App\Food;
 
 class DashboardController extends Controller
 {
@@ -38,8 +39,7 @@ class DashboardController extends Controller
         "amount" => "required"
       ]);
 
-      \DB::table("finances")
-        ->insert(
+      Finance::insert(
             [
               "name" => $request->input("name"),
               "amount" => $request->input("amount"),
@@ -55,7 +55,6 @@ class DashboardController extends Controller
     {
       return view('backend/create_hackathon');
     }
-
 
     public function SubmitHackathon(Request $request)
     {
@@ -83,7 +82,7 @@ class DashboardController extends Controller
         "zipcode" => $request->input("zipcode"),
         "registration_begin" => $request->input("registration_begin"),
         "registration_end" => $request->input("registration_end"),
-        "checkin_begin" => $request->input("checkin_begin")  
+        "checkin_begin" => $request->input("checkin_begin")
       ]);
 
 
@@ -100,7 +99,35 @@ class DashboardController extends Controller
 
     public function Food()
     {
-      return view('backend/food');
+      $foods = json_decode(Food::all());
+      return view('backend/food', compact('foods'));
+    }
+
+    public function PostFood(Request $request)
+    {
+      $this->validate($request, [
+        "company_name" => "required",
+        "phone" => "required",
+        "cost_per_person" => "required",
+        "total_estimate" => "required",
+        "contacted" => "required",
+        "will_deliver" => "required",
+        "confirmed" => "required"
+      ]);
+
+      Food::insert(
+            [
+              "company" => $request->input("company_name"),
+              "phone" => $request->input("phone"),
+              "cost_per_person" => $request->input("cost_per_person"),
+              "total_estimate" => $request->input("total_estimate"),
+              "contacted" => $request->input("contacted"),
+              "will_deliver" => $request->input("will_deliver"),
+              "confirmed" => $request->input("confirmed"),
+              "hackathon_id" => 1
+            ]);
+
+      return redirect()->action("DashboardController@Food");
     }
 
     public function Profile()
