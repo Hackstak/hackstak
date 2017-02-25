@@ -8,7 +8,7 @@ use App\Hackathon;
 
 class Finance extends Model
 {
-  protected $table = 'finance';
+  protected $table = 'finances';
   /**
    * The attributes that are mass assignable.
    *

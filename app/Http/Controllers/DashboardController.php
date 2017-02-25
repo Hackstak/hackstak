@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $credits = array_filter($f, function($var){ return $var->amount >= 0; });
         $debits = array_filter($f, function($var){ return $var->amount < 0; });
 
-        return view('backend/finances', compact('credits', 'debists'));
+        return view('backend/finances', compact('credits', 'debits'));
     }
 
 
@@ -31,12 +31,12 @@ class DashboardController extends Controller
         "amount" => "required"
       ]);
 
-      \DB::table("finance")
+      \DB::table("finances")
         ->insert(
             [
               "name" => $request->input("name"),
               "amount" => $request->input("amount"),
-              "hackathon" => 1,
+              "hackathon_id" => 1,
               "created_by" => 1,
               "updated_by" => 1
             ]);
