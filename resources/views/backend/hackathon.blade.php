@@ -36,7 +36,7 @@
       </div>
     </div>
   </div>
-  @if($organizer)
+  @if($organizer == 1)
     @include('subviews/organizer')
   @endif
   <div class="hr-divider m-t-md m-b">
@@ -71,13 +71,17 @@
       </div>
     </div>
 
-      @if(!$organizer)
+      @if($organizer == 1)
     <div class="row">
       <a href="{{ url('/dashboard/events/register/' . $hackathon->id )}}"><button type="button" class="btn btn-lg btn-default col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">Sign Up</button></a>
     </div>
-    @else
+    @elseif($organizer == 0)
     <div class="row">
       <a href="#"><button type="button" class="btn btn-lg btn-default col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">Edit Hackathon</button></a>
+    </div>
+    @elseif($organizer == 2)
+    <div class="row center">
+      You're registered for this hackathon!
     </div>
     @endif
     <br>

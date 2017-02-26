@@ -145,7 +145,15 @@ class DashboardController extends Controller
       }
 
       $user = Attendance::with('user')->where('hackathon_id', $hackathon->id)->where('user_id', Auth::user()->id)->first();
-      $organizer = $user->organizer;
+      $organizer = 0;
+      if($user != null)
+      {
+        if($user->organizer){
+          $organizer = 1;
+        } else {
+          $organizer = 2;
+        }
+      }
       return view('backend/hackathon', compact('hackathon', 'organizer', 'lat', 'long'));
 
     }
@@ -387,12 +395,19 @@ class DashboardController extends Controller
       return redirect()->action('DashboardController@Profile')->with('success', 'Your profile has been updated!');
     }
 
-
-    public function RegisterForEvent()
+    public function RegisterForEvent($id)
     {
+      $hackathon = Hackathon::where('id', $id)->first();
+      $attendance = new Attendance();
+      $attendance->user()->associate(Auth::user());
+      $attendance->hackathon()->associate($hackathon);
+      $attendance->organizer = 0;
+      $attendance->registered = 1;
+      $attendance->accepted = 0;
+      $attendance->rsvp = 0;
+      $attendance->checked_in = 0;
+      $attendance->save();
 
-      return redirect()->action('DashboardController@Dashboard')->with('success', 'You have registered for the event!');
-
-
+      return back()->with('success', 'You have registered for the event!');
     }
 }
