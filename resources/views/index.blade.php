@@ -14,6 +14,7 @@
     <a class="btn btn-lg btn-primary" href="{{ url('/dashboard')}}" role="button">Go to your dashboard...</a>
     @else
     <a class="btn btn-lg btn-primary" href="{{ url('/login')}}" role="button">Log in to get started...</a>
+    <a class="btn btn-lg btn-primary" href="{{ url('/register')}}" role="button">...or Register today!</a>
     @endif
   </p>
 </div>

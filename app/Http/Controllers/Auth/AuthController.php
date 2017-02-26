@@ -39,12 +39,6 @@ class AuthController extends Controller
       }
     }
 
-    public function GetLogout()
-    {
-      Auth::logout();
-      return view('index');
-    }
-
     public function GetRegister()
     {
       return view('auth/register');
