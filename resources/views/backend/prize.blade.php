@@ -23,29 +23,22 @@
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="modal-body">
             <div class="row">
-              <div class="col-md-1"></div>
-              <input type="text" name="name" class="form-control col-md-4" placeholder="Name">
-              <div class="col-md-2"></div>
-              <input type="text" name="link" class="form-control col-md-4" placeholder="Purchase Link">
+              <input type="text" name="name" class="form-control col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-1" placeholder="Name">
+              <input type="text" name="link" class="form-control col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-2" placeholder="Purchase Link">
             </div>
             <br>
             <div class="row">
-              <div class="col-md-1"></div>
-              <input type="text" name="cost_per_item" class="form-control col-md-4" placeholder="Cost Per Item">
-              <div class="col-md-2"></div>
-              <input type="text" name="total_per_team" class="form-control col-md-4" placeholder="Total Per Team">
+              <input type="text" name="cost_per_item" class="form-control col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-1" placeholder="Cost Per Item">
+              <input type="text" name="total_per_team" class="form-control col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-2" placeholder="Total Per Team">
             </div>
             <br>
             <div class="row">
-              <div class="col-md-1"></div>
-              <select class="col-md-4" name="purchased" class="form-control">
+              <select class="col-xs-4 col-xs-offset-1" name="purchased" class="form-control">
                   <option value>Purchased?</option>
                   <option value="1">Yes</option>
                   <option value="0">No</option>
               </select>
-
-              <div class="col-md-2"></div>
-              <select class="col-md-4" name="delivered" class="form-control">
+              <select class="col-xs-4 col-xs-offset-2" name="delivered" class="form-control">
                   <option value>Delivered?</option>
                   <option value="1">Yes</option>
                   <option value="0">No</option>
@@ -62,9 +55,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-3"></div>
-    <button type="button" class="btn btn-lg btn-default col-md-6" data-toggle="modal" data-target="#entryModal">Add Entry</button>
-    <div class="col-md-3"></div>
+    <button type="button" class="btn btn-lg btn-default col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" data-toggle="modal" data-target="#entryModal">Add Entry</button>
   </div>
 
   <div class="hr-divider m-t-md m-b">
