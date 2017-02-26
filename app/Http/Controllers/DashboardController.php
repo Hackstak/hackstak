@@ -425,4 +425,51 @@ class DashboardController extends Controller
       $attendance->save();
       return back()->with('success', $attendance->user->first.' has been checked in!');
     }
+
+    public function EditHackathon($id)
+    {
+      $hackathon = Hackathon::where('id', $id)->first();
+      return view('backend/edit_hackathon', compact('hackathon'));
+    }
+
+    public function UpdateHackathon(Request $request, $id)
+    {
+      $this->validate($request, [
+        "name" => "required|string|max:255",
+        "startdate" => "required",
+        "enddate" => "required",
+        "address" => "required|string|max:255",
+        "city" => "required|string|max:255",
+        "state" => "required|string|max:255",
+        "zipcode" => "required|string|max:255",
+        "registration_begin" => "required",
+        "registration_end" => "required",
+        "checkin_begin" => "required",
+        "checkin_end" => "required",
+        "website" => "max:255",
+        "facebook" => "max:255",
+        "instagram" => "max:255",
+        "twitter" => "max:255"
+      ]);
+
+      $hackathon = Hackathon::where('id', $id)->first();
+      $hackathon->name = $request->input("name");
+      $hackathon->start_date = $request->input("startdate");
+      $hackathon->end_date = $request->input("enddate");
+      $hackathon->address = $request->input("address");
+      $hackathon->city = $request->input("city");
+      $hackathon->state = $request->input("state");
+      $hackathon->zip = $request->input("zipcode");
+      $hackathon->registration_begin = $request->input("registration_begin");
+      $hackathon->registration_end = $request->input("registration_end");
+      $hackathon->checkin_begin = $request->input("checkin_begin");
+      $hackathon->checkin_end = $request->input("checkin_end");
+      $hackathon->website = $request->input("website");
+      $hackathon->facebook = $request->input("facebook");
+      $hackathon->instagram = $request->input("instagram");
+      $hackathon->twitter = $request->input("twitter");
+      $hackathon->createdBy()->associate(Auth::user());
+      $hackathon->save();
+      return back()->with('success', 'You have updated your hackathon!');
+    }
 }

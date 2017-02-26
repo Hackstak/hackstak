@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('/dashboard/profile', 'DashboardController@UpdateProfile');
   Route::get('/dashboard/events/{id}', 'DashboardController@ShowHackathon');
   Route::get('/dashboard/events/register/{id}', 'DashboardController@RegisterForEvent');
+  Route::get('/dashboard/events/edit/{id}', 'DashboardController@EditHackathon');
+  Route::post('/dashboard/events/edit/{id}', 'DashboardController@UpdateHackathon');
   Route::get('/dashboard/checkin/{id}', 'DashboardController@CheckIn');
   Route::get('/dashboard/checkin/{id}/{user}', 'DashboardController@RegisterCheckIn');
 });

@@ -77,7 +77,7 @@
     </div>
     @elseif($organizer == 1)
     <div class="row">
-      <a href="#"><button type="button" class="btn btn-lg btn-default col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">Edit Hackathon</button></a>
+      <a href="{{ url('/dashboard/events/edit/' . $hackathon->id )}}"><button type="button" class="btn btn-lg btn-default col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">Edit Hackathon</button></a>
     </div>
     @elseif($organizer == 2)
     <div class="row center">
