@@ -11,6 +11,7 @@
         <div class="p-a">
           <span class="statcard-desc">{{ $h->city . ", " . $h->state }}</span>
           <h2 class="statcard-number">{{ $h->name }}</h2>
+          <small class="delta-indicator">{{ date("M d, Y", strtotime($h->start_date)) }} - {{ date("M d, Y", strtotime($h->end_date)) }}</small>
         </div>
       </div>
     </div>

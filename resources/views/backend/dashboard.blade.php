@@ -21,6 +21,7 @@
         <div class="p-a">
           <span class="statcard-desc">{{ $h->hackathon->city . ", " . $h->hackathon->state }}</span>
           <h2 class="statcard-number">{{ $h->hackathon->name }}</h2>
+          <small class="delta-indicator">{{ date("M d, Y", strtotime($h->hackathon->start_date)) }} - {{ date("M d, Y", strtotime($h->hackathon->end_date)) }}</small>
         </div>
       </div>
     </div>
