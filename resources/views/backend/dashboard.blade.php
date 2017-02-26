@@ -16,7 +16,8 @@
   <div class="row statcards">
 
     @foreach($hackathons as $h)
-    <div class="col-md-6 col-lg-6 m-b">
+    <a href="{{ url('/dashboard/events/' . $h->id )}}">
+      <div class="col-md-6 col-lg-6 m-b">
       <div class="statcard {{ $color_strings[array_rand($color_strings, 1)] }}">
         <div class="p-a">
           <span class="statcard-desc">{{ $h->city . ", " . $h->state }}</span>
@@ -24,6 +25,7 @@
         </div>
       </div>
     </div>
+  </a>
     @endforeach
 
   </div>

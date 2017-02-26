@@ -96,6 +96,15 @@ class DashboardController extends Controller
 
     }
 
+    public function ShowHackathon($id = null)
+    {
+      $hackathon = Hackathon::where('id', $id)->first();
+      if(is_null($hackathon)) {
+        return redirect()->action("DashboardController@Dashboard")->withErros("Event does not exist!");
+      }
+      return view('backend/hackathon', compact('hackathon'));
+    }
+
     public function Administration()
     {
       return view('backend/admin');
