@@ -138,6 +138,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="website" class="col-sm-3 control-label">Website</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="website" placeholder="eg. https://www.website.com/" class="form-control" autofocus>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="facebook" class="col-sm-3 control-label">Facebook</label>
                     <div class="col-sm-9">
                         <input type="text" name="facebook" placeholder="eg. https://www.facebook.com/page" class="form-control" autofocus>

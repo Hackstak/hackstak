@@ -7,6 +7,7 @@ use Hash;
 
 use Illuminate\Http\Request;
 use App\Finance;
+use App\Attendance;
 use App\Hackathon;
 use App\User;
 use App\Food;
@@ -19,7 +20,8 @@ class DashboardController extends Controller
 {
     public function Dashboard()
     {
-      $hackathons = json_decode(Hackathon::all());
+      $hackathons = Attendance::with('user', 'hackathon')->where('user_id', Auth::user()->id)->get();
+      //$hackathons = json_decode(Hackathon::all());
       $color_strings = [ "statcard-info", "statcard-danger", "statcard-primary", "statcard-success", "statcard-warning"];
       return view('backend/dashboard', compact('hackathons', "color_strings"));
     }
@@ -64,17 +66,21 @@ class DashboardController extends Controller
     {
 
       $this->validate($request, [
-        "name" => "required",
+        "name" => "required|string|max:255",
         "startdate" => "required",
         "enddate" => "required",
-        "address" => "required",
-        "city" => "required",
-        "state" => "",
-        "zipcode" => "required",
+        "address" => "required|string|max:255",
+        "city" => "required|string|max:255",
+        "state" => "required|string|max:255",
+        "zipcode" => "required|string|max:255",
         "registration_begin" => "required",
         "registration_end" => "required",
         "checkin_begin" => "required",
-        "checkin_end" => "required"
+        "checkin_end" => "required",
+        "website" => "max:255",
+        "facebook" => "max:255",
+        "instagram" => "max:255",
+        "twitter" => "max:255"
       ]);
 
       $hackathon = new Hackathon();
@@ -89,8 +95,23 @@ class DashboardController extends Controller
       $hackathon->registration_end = $request->input("registration_end");
       $hackathon->checkin_begin = $request->input("checkin_begin");
       $hackathon->checkin_end = $request->input("checkin_end");
+      $hackathon->website = $request->input("website");
+      $hackathon->facebook = $request->input("facebook");
+      $hackathon->instagram = $request->input("instagram");
+      $hackathon->twitter = $request->input("twitter");
       $hackathon->createdBy()->associate(Auth::user());
       $hackathon->save();
+
+      $attendance = new Attendance();
+      $attendance->user()->associate(Auth::user());
+      $attendance->hackathon()->associate($hackathon);
+      $attendance->organizer = 1;
+      $attendance->registered = 1;
+      $attendance->accepted = 0;
+      $attendance->rsvp = 0;
+      $attendance->checked_in = 0;
+      $attendance->team_name = "Organizers";
+      $attendance->save();
 
       return redirect()->action("DashboardController@Dashboard")->with('success', 'Hackathon created!');
 
@@ -287,18 +308,18 @@ class DashboardController extends Controller
         'special_needs' => 'max:255',
       ]);
 
-      $user->first = $request->first;
-      $user->last = $request->last;
-      $user->email = $request->email;
-      $user->phone = $request->phone;
-      $user->username = $request->username;
-      if($request->cpassword != "" && $request->password != "" && $request->password_confirmation != "")
+      $user->first = $request->input('first');
+      $user->last = $request->input('last');
+      $user->email = $request->input('email');
+      $user->phone = $request->input('phone');
+      $user->username = $request->input('username');
+      if($request->input('cpassword') != "" && $request->input('password') != "" && $request->input('password_confirmation') != "")
       {
-        if(strlen($request->password) >= 3)
+        if(strlen($request->input('password')) >= 3)
         {
-          if (Hash::check($request->cpassword, Auth::user()->password))
+          if (Hash::check($request->input('cpassword'), Auth::user()->input('password')))
           {
-            $user->password = bcrypt($request->password);
+            $user->password = bcrypt($request->input('password'));
           } else
           {
             return redirect()->action('DashboardController@Profile')->withErrors("Your current password doesn't match the one you typed in.");
@@ -308,14 +329,14 @@ class DashboardController extends Controller
           return redirect()->action('DashboardController@Profile')->withErrors("Your new password must be longer than three characters.");
         }
       }
-      $user->birthday = $request->birthday;
-      $user->school = $request->school;
-      $user->major = $request->major;
-      $user->school_year = $request->school_year;
-      $user->gender = $request->gender;
-      $user->shirt_size = $request->shirt_size;
-      $user->dietary_restrictions = $request->dietary_restrictions;
-      $user->special_needs = $request->special_needs;
+      $user->birthday = $request->input('birthday');
+      $user->school = $request->input('school');
+      $user->major = $request->input('major');
+      $user->school_year = $request->input('school_year');
+      $user->gender = $request->input('gender');
+      $user->shirt_size = $request->input('shirt_size');
+      $user->dietary_restrictions = $request->input('dietary_restrictions');
+      $user->special_needs = $request->input('special_needs');
       $user->save();
       return redirect()->action('DashboardController@Profile')->with('success', 'Your profile has been updated!');
     }

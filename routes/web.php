@@ -41,7 +41,11 @@ Route::group(['middleware' => 'auth'], function () {
 // Authentication routes...
 Route::get('login', 'Auth\AuthController@GetLogin');
 Route::post('login', 'Auth\AuthController@Login');
-Route::get('logout', 'Auth\AuthController@GetLogout');
+Route::get('/logout', function() {
+    Auth::logout();
+    Session::forget('user');
+    return Redirect::to('/');
+});
 
 // Registration routes...
 Route::get('register', 'Auth\AuthController@GetRegister');

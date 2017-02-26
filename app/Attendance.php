@@ -15,16 +15,16 @@ class Attendance extends Model
      * @var array
      */
     protected $fillable = [
-        'user', 'hackathon', 'organizer', 'registered', 'accepted', 'rsvp', 'checked_in', 'team_name'
+        'user_id', 'hackathon_id', 'organizer', 'registered', 'accepted', 'rsvp', 'checked_in', 'team_name'
       ];
 
     public function user()
     {
-      return $this->hasMany('App\User');
+      return $this->belongsTo('App\User', 'user_id');
     }
 
     public function hackathon()
     {
-      return $this->hasMany('App\Hackathon');
+      return $this->belongsTo('App\Hackathon', 'hackathon_id');
     }
 }
