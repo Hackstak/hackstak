@@ -19,9 +19,10 @@ class CreateHackathonTable extends Migration
       $table->date('start_date');
       $table->date('end_date');
       $table->string('address');
-      $table->string('facebook')->default('');
-      $table->string('twitter')->default('');
-      $table->string('instagram')->default('');
+      $table->string('website')->nullable();
+      $table->string('facebook')->nullable();
+      $table->string('twitter')->nullable();
+      $table->string('instagram')->nullable();
       $table->string('state');
       $table->unsignedInteger('zip');
       $table->string('city');
@@ -32,7 +33,6 @@ class CreateHackathonTable extends Migration
       $table->integer('current_balance')->default(0);
       $table->integer('created_by')->unsigned();
       $table->integer('updated_by')->unsigned()->nullable();
-      $table->string('website');
       $table->timestamps();
     });
   }

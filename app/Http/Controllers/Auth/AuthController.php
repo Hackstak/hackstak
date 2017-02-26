@@ -32,7 +32,7 @@ class AuthController extends Controller
         'password' => 'required|string|max:255',
       ]);
 
-      if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+      if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
         return redirect()->intended('dashboard');
       } else {
         return redirect()->action('Auth\AuthController@GetLogin')->withErrors("Invalid username or password.");
@@ -71,23 +71,23 @@ class AuthController extends Controller
       ]);
 
       $user = new User();
-      $user->first = $request->first;
-      $user->last = $request->last;
-      $user->email = $request->email;
-      $user->username = $request->username;
-      $user->phone = $request->phone;
-      $user->password = bcrypt($request->password);
-      $user->birthday = $request->birthday;
-      $user->school = $request->school;
-      $user->major = $request->major;
-      $user->school_year = $request->school_year;
-      $user->gender = $request->gender;
-      $user->shirt_size = $request->shirt_size;
-      $user->dietary_restrictions = $request->dietary_restrictions;
-      $user->special_needs = $request->special_needs;
+      $user->first = $request->input('first');
+      $user->last = $request->input('last');
+      $user->email = $request->input('email');
+      $user->username = $request->input('username');
+      $user->phone = $request->input('phone');
+      $user->password = bcrypt($request->input('password'));
+      $user->birthday = $request->input('birthday');
+      $user->school = $request->input('school');
+      $user->major = $request->input('major');
+      $user->school_year = $request->input('school_year');
+      $user->gender = $request->input('gender');
+      $user->shirt_size = $request->input('shirt_size');
+      $user->dietary_restrictions = $request->input('dietary_restrictions');
+      $user->special_needs = $request->input('special_needs');
       $user->save();
 
-      if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+      if (Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])) {
         return redirect()->intended('dashboard');
       } else {
         return redirect()->action('Auth\AuthController@GetLogin')->withErrors("Unable to log you in.");
