@@ -37,27 +37,37 @@
 </div>
 
 <div class="container">
-<div class="row">
+<div class="row center">
   <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-3">
+    <a href="{{ url('/dashboard/events/register/' . $hackathon->id )}}"
     <button type="button" class="btn btn-primary btn-lg col-md-5" display="block" >Sign Up</button>
+  </a>
 </div>
   </div>
   <div class="row">
     <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0">
-      <h3><span class="label label-info">
-        <small class="delta-indicator">{{ date("M d, Y", strtotime($hackathon->registration_begin)) }}</small>
-      </span>Registration Opens</h3>
+      <h3 class="center">Registration Opens</h3>
+      <h3 class="center">
+        <span class="label label-info">
+          <small class="delta-indicator">{{ date("M d, Y", strtotime($hackathon->registration_begin)) }}</small>
+        </span>
+      </h3>
     </div>
-
-     <div class="col-sm-5 col-md-4 col-md-offset-0">
-       <h3><span class="label label-success">
-         <small class="delta-indicator">{{ date("M d, Y", strtotime($hackathon->start_date)) }}</small>
-</span>Start Time</h3>
+     <div class="col-sm-5 col-md-3 col-md-offset-0">
+       <h3 class="center">Start Time</h3>
+       <h3 class="center">
+         <span class="label label-success">
+           <small class="delta-indicator">{{ date("M d, Y", strtotime($hackathon->start_date)) }}</small>
+         </span>
+       </h3>
      </div>
      <div class="col-sm-5 col-sm-offset-2 col-md-2 col-md-offset-0">
-       <h3><span class="label label-danger">
-         <small class="delta-indicator">{{ date("M d, Y", strtotime($hackathon->end_date)) }}</small>
-       </span>End Time</h3>
+       <h3 class="center">End Time</h3>
+       <h3 class="center">
+         <span class="label label-danger">
+           <small class="delta-indicator">{{ date("M d, Y", strtotime($hackathon->end_date)) }}</small>
+         </span>
+       </h3>
      </div>
 
 

@@ -339,4 +339,13 @@ class DashboardController extends Controller
       $user->save();
       return redirect()->action('DashboardController@Profile')->with('success', 'Your profile has been updated!');
     }
+
+
+    public function RegisterForEvent()
+    {
+
+      return redirect()->action('DashboardController@Dashboard')->with('success', 'You have registered for the event!');
+
+
+    }
 }
