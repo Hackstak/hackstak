@@ -6,25 +6,16 @@
 @endsection
 
 @section('content')
-
-
-<!-- Main component for a primary marketing message or call to action -->
 <div class="jumbotron">
-  <h1>Navbar example</h1>
-  <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+  <h1>Hackstak</h1>
+  <p>An easy to use, beginning to end hackathon management platform. Created at HackISU by Alex Todd, Ashley Coleman, Dalton Hahn, and Kyle Eisenbarger.</p>
   <p>
-    <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs »</a>
+    @if(Auth::check())
+    <a class="btn btn-lg btn-primary" href="{{ url('/dashboard')}}" role="button">Go to your dashboard...</a>
+    @else
+    <a class="btn btn-lg btn-primary" href="{{ url('/login')}}" role="button">Log in to get started...</a>
+    @endif
   </p>
 </div>
-
-</div> <!-- /container -->
-
-
-
-
-@endsection
-
-
-@section('footer')
-
+</div>
 @endsection

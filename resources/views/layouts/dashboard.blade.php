@@ -21,20 +21,16 @@
           <nav class="sidebar-nav">
             <div class="sidebar-header">
               <button class="nav-toggler nav-toggler-sm sidebar-toggler" type="button" data-toggle="collapse" data-target="#nav-toggleable-sm"><span class="sr-only">Toggle nav</span></button>
-              <!--<a class="sidebar-brand img-responsive" href="{{ url('/') }}"><img src="#" /></a>-->
+              <a class="sidebar-brand img-responsive" href="{{ url('/') }}">Hackstak</a>
             </div>
             <div class="collapse nav-toggleable-sm" id="nav-toggleable-sm">
-              <form class="sidebar-form">
-                <input class="form-control" type="text" placeholder="Search...">
-                <button type="submit" class="btn-link"><span class="icon icon-magnifying-glass"></span></button>
-              </form>
               <ul class="nav nav-pills nav-stacked">
                 <li class="nav-header">Dashboards</li>
                 <li @if(Request::is('dashboard'))class="active"@endif><a href="{{ url('/dashboard') }}">Overview</a></li>
                 <li @if(Request::is('dashboard/create'))class="active"@endif><a href="{{ url('/dashboard/create') }}">Create Hackathon</a></li>
                 <li @if(Request::is('dashboard/finances'))class="active"@endif><a href="{{ url('/dashboard/finances') }}">Finances</a></li>
                 <li @if(Request::is('dashboard/food'))class="active"@endif><a href="{{ url('/dashboard/food') }}">Food Planner</a></li>
-                <li @if(Request::is('dashboard/food'))class="active"@endif><a href="{{ url('/dashboard/prize') }}">Prize Planner</a></li>
+                <li @if(Request::is('dashboard/prize'))class="active"@endif><a href="{{ url('/dashboard/prize') }}">Prize Planner</a></li>
                 <li class="nav-header">My Profile</li>
                 @if(Auth::check())
                   @if (Auth::user()->admin == 1)
