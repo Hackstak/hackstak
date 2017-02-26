@@ -28,10 +28,8 @@
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="modal-body">
             <div class="row">
-              <div class="col-md-1"></div>
-              <input type="text" name="name" class="form-control col-md-4" placeholder="Name">
-              <div class="col-md-2"></div>
-              <input type="text" name="amount" class="form-control col-md-4" placeholder="Amount">
+              <input type="text" name="name" class="form-control col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-1" placeholder="Name">
+              <input type="text" name="amount" class="form-control col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-2" placeholder="Amount">
             </div>
           </div>
           <div class="modal-footer">
@@ -44,9 +42,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-3"></div>
-    <button type="button" class="btn btn-lg btn-default col-md-6" data-toggle="modal" data-target="#entryModal">Add Entry</button>
-    <div class="col-md-3"></div>
+    <button type="button" class="btn btn-lg btn-default col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" data-toggle="modal" data-target="#entryModal">Add Entry</button>
   </div>
 
   <div class="hr-divider m-t-md m-b">
