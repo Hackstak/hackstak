@@ -70,7 +70,8 @@
         </h3>
       </div>
     </div>
-    @if(!$organizer)
+    
+      @if(!$organizer)
     <div class="row">
       <a href="{{ url('/dashboard/events/register/' . $hackathon->id )}}"><button type="button" class="btn btn-lg btn-default col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">Sign Up</button></a>
     </div>
@@ -80,4 +81,28 @@
     </div>
     @endif
   </div>
-  @endsection
+
+
+ <div id="map"></div>
+
+@endsection
+@section('footer')
+<script>
+      function initMap() {
+        var uluru = {lat: {{ $lat }}, lng: {{ $long }}};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRv6XoNNgi5ftgGLqgJGIBSscUfGHJpGU&libraries=places&callback=initMap" async defer></script></script>
+@endsection
+  

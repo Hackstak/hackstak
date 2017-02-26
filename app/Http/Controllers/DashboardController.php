@@ -18,6 +18,9 @@ use App\TechTalk;
 
 class DashboardController extends Controller
 {
+
+
+
     public function Dashboard()
     {
       $hackathons = Attendance::with('user', 'hackathon')->where('user_id', Auth::user()->id)->get();
@@ -122,13 +125,29 @@ class DashboardController extends Controller
     public function ShowHackathon($id = null)
     {
       $hackathon = Hackathon::where('id', $id)->first();
+
+      $address = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+      $test = str_replace(" ", "+", $hackathon->city) . "+" . $hackathon->state . "+" . $hackathon->zip;
+      $address .= $test . "&key=AIzaSyCRv6XoNNgi5ftgGLqgJGIBSscUfGHJpGU";
+
+      $curl = curl_init();
+      curl_setopt_array($curl, array(
+          CURLOPT_RETURNTRANSFER => 1,
+          CURLOPT_URL => $address
+      ));
+      $result = json_decode(curl_exec($curl));
+      $lat = $result->results[0]->geometry->location->lat;
+      $long = $result->results[0]->geometry->location->lng;
+
+
       if(is_null($hackathon)) {
         return redirect()->action("DashboardController@Dashboard")->withErrors("Event does not exist!");
       }
+
       $user = Attendance::with('user')->where('hackathon_id', $hackathon->id)->where('user_id', Auth::user()->id)->first();
       $organizer = $user->organizer;
-      $address = $hackathon->address.' '.$hackathon->city.', '.$hackathon->state.' '.$hackathon->zip;
-      return view('backend/hackathon', compact('hackathon', 'organizer', 'address'));
+      return view('backend/hackathon', compact('hackathon', 'organizer', 'lat', 'long'));
+
     }
 
     public function Administration()
