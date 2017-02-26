@@ -11,7 +11,6 @@
     @include('subviews/messages')
   </div>
 
-  <!-- Modal -->
   <div class="modal fade" id="entryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -27,19 +26,18 @@
             </div>
             <div class="row">
               <select class="col-xs-10 col-xs-offset-1" name="confirmed" class="form-control">
-                  <option value>Confirmed?</option>
-                  <option value="1">Yes</option>
-                  <option value="0">No</option>
+                <option value>Confirmed?</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
               </select>
             </div>
-            </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
       </form>
-      </div>
     </div>
   </div>
 
@@ -52,8 +50,8 @@
   </div>
 
 
-    <div class="col-md-12">
-      <table class="table table-striped" id="debits-table">
+  <div class="col-md-12">
+    <table class="table table-striped" id="debits-table">
       <thead>
         <tr>
           <th>Name</th>
