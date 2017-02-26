@@ -16,7 +16,7 @@
   <div class="row statcards">
 
     @foreach($hackathons as $h)
-    <a href="{{ url('/dashboard/events/' . $h->id )}}">
+    <a href="{{ url('/dashboard/events/' . $h->hackathon->id )}}">
       <div class="col-md-6 col-lg-6 m-b">
       <div class="statcard {{ $color_strings[array_rand($color_strings, 1)] }}">
         <div class="p-a">
