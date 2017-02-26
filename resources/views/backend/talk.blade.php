@@ -1,12 +1,12 @@
 @extends('layouts.dashboard')
-@section('title', 'Prize Planner')
+@section('title', 'Talk Planner')
 
 @section('content')
 <div class="col-sm-9 content">
   <div class="dashhead">
     <div class="dashhead-titles">
       <h6 class="dashhead-subtitle">Dashboards</h6>
-      <h2 class="dashhead-title">Prize Planner</h2>
+      <h2 class="dashhead-title">Talk Planner</h2>
     </div>
     @include('subviews/messages')
   </div>
@@ -19,34 +19,40 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Add Entry</h4>
         </div>
-        <form id="new-entry-form" method="POST" action="{{ url('/dashboard/prize') }}">
+        <form id="new-entry-form" method="POST" action="{{ url('/dashboard/talk') }}">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="modal-body">
             <div class="row">
               <div class="col-md-1"></div>
               <input type="text" name="name" class="form-control col-md-4" placeholder="Name">
               <div class="col-md-2"></div>
-              <input type="text" name="link" class="form-control col-md-4" placeholder="Purchase Link">
+              <input type="text" name="presenter" class="form-control col-md-4" placeholder="Presenter">
             </div>
             <br>
             <div class="row">
               <div class="col-md-1"></div>
-              <input type="text" name="cost_per_item" class="form-control col-md-4" placeholder="Cost Per Item">
-              <div class="col-md-2"></div>
-              <input type="text" name="total_per_team" class="form-control col-md-4" placeholder="Total Per Team">
+              <div class="form-group">
+                  <label for="start_date" class="col-md-3 control-label">Start Date</label>
+                  <div class="col-md-6">
+                      <input type="date" name="start_time" class="form-control" autofocus required>
+                  </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-1"></div>
+              <div class="form-group">
+                  <label for="end_date" class="col-md-3 control-label">End Date</label>
+                  <div class="col-md-6">
+                      <input type="date" name="end_time" class="form-control" autofocus required>
+                  </div>
+              </div>
+            </div>
             </div>
             <br>
             <div class="row">
               <div class="col-md-1"></div>
-              <select class="col-md-4" name="purchased" class="form-control">
-                  <option value>Purchased?</option>
-                  <option value="1">Yes</option>
-                  <option value="0">No</option>
-              </select>
-
-              <div class="col-md-2"></div>
-              <select class="col-md-4" name="delivered" class="form-control">
-                  <option value>Delivered?</option>
+              <select class="col-md-4" name="confirmed" class="form-control">
+                  <option value>Confirmed?</option>
                   <option value="1">Yes</option>
                   <option value="0">No</option>
               </select>
@@ -68,7 +74,7 @@
   </div>
 
   <div class="hr-divider m-t-md m-b">
-    <h3 class="hr-divider-content hr-divider-heading">Prize Planner</h3>
+    <h3 class="hr-divider-content hr-divider-heading">Talk Planner</h3>
   </div>
 
 
@@ -77,28 +83,21 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Cost per Item</th>
-          <th>Total Per Team</th>
-          <th>Purchase Link</th>
-          <th class="text-center">Purchased</th>
-          <th class="text-center">Delivered</th>
+          <th>Presenter</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th class="text-center">Confirmed</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($prizes as $p)
+        @foreach($talks as $t)
         <tr>
-          <td>{{ $p->name }}</td>
-          <td>${{ $p->cost_per_item }}</td>
-          <td>${{ $p->total_per_team }}</td>
-          <td><a href="{{ $p->link }}">{{ $p->link }}</a></td>
+          <td>{{ $t->name }}</td>
+          <td>{{ $t->presenter }}</td>
+          <td>{{ $t->start_time }}</td>
+          <td>{{ $t->end_time }}</td>
 
-          @if($p->purchased == true)
-          <td class="checkable_td_one"><span class="checked icon icon-check center-block text-center"></span></td>
-          @else
-          <td class="checkable_td_one"><span class="icon icon-check center-block text-center"></span></td>
-          @endif
-
-          @if($p->delivered == true)
+          @if($t->confirmed == true)
           <td class="checkable_td_two"><span class="checked icon icon-check center-block text-center"></span></td>
           @else
           <td class="checkable_td_two"><span class="icon icon-check center-block text-center"></span></td>

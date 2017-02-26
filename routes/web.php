@@ -21,9 +21,15 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/dashboard/finances', 'DashboardController@Finances');
   Route::post('/dashboard/finances', 'DashboardController@PostFinances');
   Route::get('/dashboard/food', 'DashboardController@Food');
+  Route::post('/dashboard/food', 'DashboardController@PostFood');
   Route::post('/dashboard/prize', 'DashboardController@PostPrize');
   Route::get('/dashboard/prize', 'DashboardController@Prize');
-  Route::post('/dashboard/food', 'DashboardController@PostFood');
+  Route::post('/dashboard/sponsor', 'DashboardController@PostSponsor');
+  Route::get('/dashboard/sponsor', 'DashboardController@Sponsor');
+  Route::post('/dashboard/talk', 'DashboardController@PostTalk');
+  Route::get('/dashboard/talk', 'DashboardController@Talk');
+  Route::post('/dashboard/theme', 'DashboardController@PostTheme');
+  Route::get('/dashboard/theme', 'DashboardController@Theme');
   Route::get('/dashboard/create', 'DashboardController@CreateHackathon');
   Route::post('dashboard/submit', 'DashboardController@SubmitHackathon');
   Route::get('/dashboard/admin', 'DashboardController@Administration');

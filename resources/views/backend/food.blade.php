@@ -24,16 +24,16 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-md-1"></div>
-              <input id="new-entry-name" type="text" name="company_name" class="form-control col-md-4" placeholder="Company Name">
+              <input type="text" name="company_name" class="form-control col-md-4" placeholder="Company Name">
               <div class="col-md-2"></div>
-              <input id="new-entry-amount" type="text" name="phone" class="form-control col-md-4" placeholder="Phone Number">
+              <input type="text" name="phone" class="form-control col-md-4" placeholder="Phone Number">
             </div>
             <br>
             <div class="row">
               <div class="col-md-1"></div>
-              <input id="new-entry-name" type="text" name="cost_per_person" class="form-control col-md-4" placeholder="Cost per Person">
+              <input type="text" name="cost_per_person" class="form-control col-md-4" placeholder="Cost per Person">
               <div class="col-md-2"></div>
-              <input id="new-entry-amount" type="text" name="total_estimate" class="form-control col-md-4" placeholder="Total Estimate">
+              <input type="text" name="total_estimate" class="form-control col-md-4" placeholder="Total Estimate">
             </div>
             <br>
             <div class="row">

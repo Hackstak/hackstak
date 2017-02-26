@@ -11,6 +11,9 @@ use App\Hackathon;
 use App\User;
 use App\Food;
 use App\Prize;
+use App\Sponsor;
+use App\ThemeIdea;
+use App\TechTalk;
 
 class DashboardController extends Controller
 {
@@ -160,6 +163,91 @@ class DashboardController extends Controller
             ]);
 
       return redirect()->action("DashboardController@Prize");
+    }
+
+    public function Sponsor()
+    {
+      $sponsors = json_decode(Sponsor::all());
+      return view('backend/sponsor', compact('sponsors'));
+    }
+
+    public function PostSponsor(Request $request)
+    {
+
+      $this->validate($request, [
+        "name" => "required",
+        "email" => "required",
+        "phone" => "required",
+        "contribution" => "required",
+        "contacted" => "required",
+        "confirmed" => "required"
+      ]);
+
+      Sponsor::insert(
+            [
+              "name" => $request->input("name"),
+              "email" => $request->input("email"),
+              "phone" => $request->input("phone"),
+              "contribution" => $request->input("contribution"),
+              "contacted" => $request->input("contacted"),
+              "confirmed" => $request->input("confirmed"),
+              "hackathon_id" => 1
+            ]);
+
+      return redirect()->action("DashboardController@Sponsor");
+    }
+
+    public function Talk()
+    {
+      $talks = json_decode(TechTalk::all());
+      return view('backend/talk', compact('talks'));
+    }
+
+    public function PostTalk(Request $request)
+    {
+
+      $this->validate($request, [
+        "name" => "required",
+        "presenter" => "required",
+        "start_time" => "required",
+        "end_time" => "required",
+        "confirmed" => "required"
+      ]);
+
+      TechTalk::insert(
+            [
+              "name" => $request->input("name"),
+              "presenter" => $request->input("presenter"),
+              "start_time" => $request->input("start_time"),
+              "confirmed" => $request->input("confirmed"),
+              "end_time" => $request->input("end_time"),
+              "hackathon_id" => 1
+            ]);
+
+      return redirect()->action("DashboardController@Talk");
+    }
+
+    public function Theme()
+    {
+      $themes = json_decode(ThemeIdea::all());
+      return view('backend/theme', compact('themes'));
+    }
+
+    public function PostTheme(Request $request)
+    {
+      $this->validate($request, [
+        "name" => "required",
+        "confirmed" => "required"
+      ]);
+
+      ThemeIdea::insert(
+            [
+              "name" => $request->input("name"),
+              "confirmed" => $request->input("confirmed"),
+              "hackathon_id" => 1
+            ]);
+
+      return redirect()->action("DashboardController@Theme");
     }
 
     public function Profile()
