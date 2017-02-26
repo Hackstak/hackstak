@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/dashboard/admin', 'DashboardController@Administration');
   Route::get('/dashboard/profile', 'DashboardController@Profile');
   Route::post('/dashboard/profile', 'DashboardController@UpdateProfile');
+  Route::get('/dashboard/events/{id?}', 'DashboardController@ShowHackathon');
+  Route::get('/dashboard/events/register/{id?}', 'DashboardController@RegisterForEvent');
 });
 
 // Authentication routes...

@@ -116,6 +116,15 @@ class DashboardController extends Controller
 
     }
 
+    public function ShowHackathon($id = null)
+    {
+      $hackathon = Hackathon::where('id', $id)->first();
+      if(is_null($hackathon)) {
+        return redirect()->action("DashboardController@Dashboard")->withErros("Event does not exist!");
+      }
+      return view('backend/hackathon', compact('hackathon'));
+    }
+
     public function Administration()
     {
       return view('backend/admin');
@@ -329,5 +338,14 @@ class DashboardController extends Controller
       $user->special_needs = $request->input('special_needs');
       $user->save();
       return redirect()->action('DashboardController@Profile')->with('success', 'Your profile has been updated!');
+    }
+
+
+    public function RegisterForEvent()
+    {
+
+      return redirect()->action('DashboardController@Dashboard')->with('success', 'You have registered for the event!');
+
+
     }
 }
