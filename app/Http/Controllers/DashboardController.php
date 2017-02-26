@@ -123,7 +123,7 @@ class DashboardController extends Controller
 
     public function Food()
     {
-      $foods = json_decode(Food::all());
+      $foods = json_decode(Food::orderBy('total_estimate', 'asc')->get());
       return view('backend/food', compact('foods'));
     }
 
@@ -156,7 +156,7 @@ class DashboardController extends Controller
 
     public function Prize()
     {
-      $prizes = json_decode(Prize::all());
+      $prizes = json_decode(Prize::orderBy('cost_per_item', 'asc')->get());
       return view('backend/prize', compact('prizes'));
     }
 
@@ -187,7 +187,7 @@ class DashboardController extends Controller
 
     public function Sponsor()
     {
-      $sponsors = json_decode(Sponsor::all());
+      $sponsors = json_decode(Sponsor::orderBy('contribution', 'desc')->get());
       return view('backend/sponsor', compact('sponsors'));
     }
 
@@ -219,7 +219,7 @@ class DashboardController extends Controller
 
     public function Talk()
     {
-      $talks = json_decode(TechTalk::all());
+      $talks = json_decode(TechTalk::orderBy('start_time', 'asc')->get());
       return view('backend/talk', compact('talks'));
     }
 
