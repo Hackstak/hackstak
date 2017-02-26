@@ -85,7 +85,7 @@
         <div class="col-sm-9">
           <select name="school_year" class="form-control" required>
             <option value> -- select a grade -- </option>
-            <option @if($user->school_year == "High School Student")selected @endif</option>)>High School Student</option>
+            <option @if($user->school_year == "High School Student")selected @endif</option>High School Student</option>
             <option @if($user->school_year == "Freshman")selected @endif>Freshman</option>
             <option @if($user->school_year == "Sophomore")selected @endif>Sophomore</option>
             <option @if($user->school_year == "Junior")selected @endif>Junior</option>

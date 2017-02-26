@@ -410,4 +410,19 @@ class DashboardController extends Controller
 
       return back()->with('success', 'You have registered for the event!');
     }
+
+    public function CheckIn($id)
+    {
+      $hackathon = Hackathon::where('id', $id)->first();
+      $attendance = Attendance::with('user', 'hackathon')->where('hackathon_id', $id)->get();
+      return view('backend/checkin', compact('attendance', 'hackathon'));
+    }
+
+    public function RegisterCheckIn($id, $user)
+    {
+      $attendance = Attendance::with('user', 'hackathon')->where('hackathon_id', $id)->where('user_id', $user)->first();
+      $attendance->checked_in = 1;
+      $attendance->save();
+      return back()->with('success', $attendance->user->first.' has been checked in!');
+    }
 }
