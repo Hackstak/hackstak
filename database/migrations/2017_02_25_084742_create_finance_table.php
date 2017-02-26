@@ -20,6 +20,7 @@ class CreateFinanceTable extends Migration
         $table->integer('hackathon_id')->unsigned();
         $table->integer('updated_by')->unsigned();
         $table->integer('created_by')->unsigned();
+        $table->timestamps();
 
     });
   }

@@ -21,6 +21,7 @@ class CreateTechTalksTable extends Migration
           $table->datetime('end_time');
           $table->tinyInteger('confirmed');
           $table->integer('hackathon_id')->unsigned();
+          $table->timestamps();
       });
     }
 

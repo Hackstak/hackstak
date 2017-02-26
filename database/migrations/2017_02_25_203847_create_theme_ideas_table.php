@@ -18,6 +18,7 @@ class CreateThemeIdeasTable extends Migration
           $table->string('name');
           $table->tinyInteger('confirmed');
           $table->integer('hackathon_id')->unsigned();
+          $table->timestamps();
       });
     }
 

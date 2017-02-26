@@ -22,6 +22,7 @@ class CreateSponsorsTable extends Migration
           $table->integer('phone')->unsigned();
           $table->string('email');
           $table->integer('hackathon_id')->unsigned();
+          $table->timestamps();
 
       });
     }
