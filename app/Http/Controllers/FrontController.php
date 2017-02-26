@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Hackathon;
 use App\Http\Controllers\Controller;
 
 class FrontController extends Controller
@@ -25,6 +26,8 @@ class FrontController extends Controller
 
     public function Hackathons()
     {
-        return view('hackathons');
+        $hackathons = Hackathon::all();
+        $color_strings = [ "statcard-info", "statcard-danger", "statcard-primary", "statcard-success", "statcard-warning"];
+        return view('hackathons', compact('hackathons', 'color_strings'));
     }
 }
