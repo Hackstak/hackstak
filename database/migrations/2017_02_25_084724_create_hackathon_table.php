@@ -32,6 +32,7 @@ class CreateHackathonTable extends Migration
       $table->integer('current_balance')->default(0);
       $table->integer('created_by')->unsigned();
       $table->integer('updated_by')->unsigned()->nullable();
+      $table->string('website');
       $table->timestamps();
     });
   }

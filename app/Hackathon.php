@@ -16,7 +16,7 @@ class Hackathon extends Model
   protected $fillable = [
       'name', 'startdate', 'enddate', 'address', 'facebook', 'twitter', 'instagram', 'created_by',
       'updated_by', 'state', 'zip', 'city', 'registration_begin', 'registration_end', 'checkin_begin',
-      'checkin_end', 'current_balance'
+      'checkin_end', 'current_balance', 'website'
     ];
   public function createdBy()
   {
