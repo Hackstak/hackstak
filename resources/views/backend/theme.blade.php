@@ -10,7 +10,7 @@
     </div>
     @include('subviews/messages')
   </div>
-
+  @include('subviews/organizer')
   <div class="modal fade" id="entryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -18,7 +18,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Add Entry</h4>
         </div>
-        <form id="new-entry-form" method="POST" action="{{ url('/dashboard/theme') }}">
+        <form id="new-entry-form" method="POST" action="{{ url('/dashboard/theme/'.$hackathon->id) }}">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="modal-body">
             <div class="row">
@@ -32,23 +32,24 @@
               </select>
             </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>
+
       </form>
     </div>
   </div>
 
-  <div class="row">
-    <button type="button" class="btn btn-lg btn-default col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" data-toggle="modal" data-target="#entryModal">Add Entry</button>
-  </div>
+
 
   <div class="hr-divider m-t-md m-b">
     <h3 class="hr-divider-content hr-divider-heading">Theme Planner</h3>
   </div>
-
+  <div class="row">
+    <button type="button" class="btn btn-lg btn-default col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" data-toggle="modal" data-target="#entryModal">Add Entry</button>
+  </div>
 
   <div class="col-md-12">
     <table class="table table-striped" id="debits-table">

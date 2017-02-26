@@ -15,21 +15,21 @@ class Finance extends Model
    * @var array
    */
   protected $fillable = [
-      'name', 'amount', 'hackathon', 'updated_by', 'created_by'
+      'name', 'amount', 'hackathon_id', 'updated_by', 'created_by'
     ];
 
-  public function updated_by()
+  public function updatedBy()
   {
-    return $this->hasMany('App\User');
+    return $this->belongsTo('App\User', 'updated_by');
   }
 
-  public function created_by()
+  public function createdBy()
   {
-    return $this->hasMany('App\User');
+    return $this->belongsTo('App\User', 'created_by');
   }
 
   public function hackathon()
   {
-    return $this->hasMany('App\Hackathon');
+    return $this->belongsTo('App\Hackathon', 'hackathon_id');
   }
 }

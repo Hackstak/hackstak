@@ -16,13 +16,13 @@ class CreateSponsorsTable extends Migration
       Schema::create('sponsors', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name');
-          $table->decimal('contribution');
+          $table->decimal('contribution', 8, 2);
           $table->tinyInteger('confirmed');
           $table->tinyInteger('contacted');
           $table->integer('phone')->unsigned();
           $table->string('email');
           $table->integer('hackathon_id')->unsigned();
-
+          $table->timestamps();
       });
     }
 

@@ -10,13 +10,7 @@
     </div>
     @include('subviews/messages')
   </div>
-
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <h1 id="balance-title">0</h1>
-    </div>
-  </div>
-  <!-- Modal -->
+  @include('subviews/organizer')
   <div class="modal fade" id="entryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -24,7 +18,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Add Entry</h4>
         </div>
-        <form id="new-entry-form" method="POST" action="{{ url('/dashboard/finances') }}">
+        <form id="new-entry-form" method="POST" action="{{ url('/dashboard/finances/'.$hackathon->id) }}">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="modal-body">
             <div class="row">
@@ -41,12 +35,17 @@
     </div>
   </div>
 
-  <div class="row">
-    <button type="button" class="btn btn-lg btn-default col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" data-toggle="modal" data-target="#entryModal">Add Entry</button>
-  </div>
-
   <div class="hr-divider m-t-md m-b">
     <h3 class="hr-divider-content hr-divider-heading">Finances</h3>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1 id="balance-title">0</h1>
+    </div>
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-lg btn-default col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" data-toggle="modal" data-target="#entryModal">Add Entry</button>
   </div>
 
   <div class="row">

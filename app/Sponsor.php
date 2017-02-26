@@ -16,9 +16,9 @@ class Sponsor extends Model
   protected $fillable = [
       'name', 'contribution', 'confirmed', 'contacted', 'phone', 'email', 'hackathon_id'
     ];
-    
-  public function hackathon_id()
+
+  public function hackathon()
   {
-    return $this->hasMany('App\Hackathon');
+    return $this->belongsTo('App\Hackathon', 'hackathon_id');
   }
 }

@@ -25,35 +25,38 @@ class DashboardController extends Controller
       return view('backend/dashboard', compact('hackathons', "color_strings"));
     }
 
-    public function Finances()
+    public function Finances($id)
     {
-        $finances = Finance::all();
-        $f = json_decode($finances);
-
-        $credits = array_filter($f, function($var){ return $var->amount >= 0; });
-        $debits = array_filter($f, function($var){ return $var->amount < 0; });
-
-        return view('backend/finances', compact('credits', 'debits'));
+        $finances = Finance::where('hackathon_id', $id)->get();
+        if($finances != null)
+        {
+          $f = json_decode($finances);
+          $credits = array_filter($f, function($var){ return $var->amount >= 0; });
+          $debits = array_filter($f, function($var){ return $var->amount < 0; });
+          $hackathon = Hackathon::where('id', $id)->first();
+          return view('backend/finances', compact('credits', 'debits', 'hackathon'));
+        }
+        return redirect()->action("DashboardController@Dashboard")->withErrors("Event does not exist!");
     }
 
 
-    public function PostFinances(Request $request)
+    public function PostFinances(Request $request, $id)
     {
       $this->validate($request, [
         "name" => "required",
         "amount" => "required"
       ]);
 
-      Finance::insert(
-            [
-              "name" => $request->input("name"),
-              "amount" => $request->input("amount"),
-              "hackathon_id" => 1,
-              "created_by" => 1,
-              "updated_by" => 1
-            ]);
+      $hackathon = Hackathon::where('id', $id)->first();
+      $finance = new Finance();
+      $finance->name = $request->input("name");
+      $finance->amount = $request->input("amount");
+      $finance->hackathon()->associate($hackathon);
+      $finance->createdBy()->associate(Auth::user());
+      $finance->updatedBy()->associate(Auth::user());
+      $finance->save();
 
-      return redirect()->action("DashboardController@Finances");
+      return back()->with('success', 'Finance added!');
     }
 
     public function CreateHackathon()
@@ -120,9 +123,12 @@ class DashboardController extends Controller
     {
       $hackathon = Hackathon::where('id', $id)->first();
       if(is_null($hackathon)) {
-        return redirect()->action("DashboardController@Dashboard")->withErros("Event does not exist!");
+        return redirect()->action("DashboardController@Dashboard")->withErrors("Event does not exist!");
       }
-      return view('backend/hackathon', compact('hackathon'));
+      $user = Attendance::with('user')->where('hackathon_id', $hackathon->id)->where('user_id', Auth::user()->id)->first();
+      $organizer = $user->organizer;
+      $address = $hackathon->address.' '.$hackathon->city.', '.$hackathon->state.' '.$hackathon->zip;
+      return view('backend/hackathon', compact('hackathon', 'organizer', 'address'));
     }
 
     public function Administration()
@@ -130,13 +136,18 @@ class DashboardController extends Controller
       return view('backend/admin');
     }
 
-    public function Food()
+    public function Food($id)
     {
-      $foods = json_decode(Food::orderBy('total_estimate', 'asc')->get());
-      return view('backend/food', compact('foods'));
+      $foods = Food::where('hackathon_id', $id)->orderBy('total_estimate', 'asc')->get();
+      if($foods != null)
+      {
+        $hackathon = Hackathon::where('id', $id)->first();
+        return view('backend/food', compact('foods', 'hackathon'));
+      }
+      return redirect()->action("DashboardController@Dashboard")->withErrors("Event does not exist!");
     }
 
-    public function PostFood(Request $request)
+    public function PostFood(Request $request, $id)
     {
       $this->validate($request, [
         "company_name" => "required",
@@ -148,28 +159,33 @@ class DashboardController extends Controller
         "confirmed" => "required"
       ]);
 
-      Food::insert(
-            [
-              "company" => $request->input("company_name"),
-              "phone" => $request->input("phone"),
-              "cost_per_person" => $request->input("cost_per_person"),
-              "total_estimate" => $request->input("total_estimate"),
-              "contacted" => $request->input("contacted"),
-              "will_deliver" => $request->input("will_deliver"),
-              "confirmed" => $request->input("confirmed"),
-              "hackathon_id" => 1
-            ]);
+      $hackathon = Hackathon::where('id', $id)->first();
+      $food = new Food();
+      $food->company = $request->input("company_name");
+      $food->phone = $request->input("phone");
+      $food->cost_per_person = $request->input("cost_per_person");
+      $food->total_estimate = $request->input("total_estimate");
+      $food->contacted = $request->input("contacted");
+      $food->will_deliver = $request->input("will_deliver");
+      $food->confirmed = $request->input("confirmed");
+      $food->hackathon()->associate($hackathon);
+      $food->save();
 
-      return redirect()->action("DashboardController@Food");
+      return back()->with('success', 'Food added!');
     }
 
-    public function Prize()
+    public function Prize($id)
     {
-      $prizes = json_decode(Prize::orderBy('cost_per_item', 'asc')->get());
-      return view('backend/prize', compact('prizes'));
+      $prizes = Prize::where('hackathon_id', $id)->orderBy('cost_per_item', 'asc')->get();
+      if($prizes != null)
+      {
+        $hackathon = Hackathon::where('id', $id)->first();
+        return view('backend/prize', compact('prizes', 'hackathon'));
+      }
+      return redirect()->action("DashboardController@Dashboard")->withErrors("Event does not exist!");
     }
 
-    public function PostPrize(Request $request)
+    public function PostPrize(Request $request, $id)
     {
       $this->validate($request, [
         "name" => "required",
@@ -180,29 +196,33 @@ class DashboardController extends Controller
         "delivered" => "required"
       ]);
 
-      Prize::insert(
-            [
-              "name" => $request->input("name"),
-              "link" => $request->input("link"),
-              "cost_per_item" => $request->input("cost_per_item"),
-              "total_per_team" => $request->input("total_per_team"),
-              "purchased" => $request->input("purchased"),
-              "delivered" => $request->input("delivered"),
-              "hackathon_id" => 1
-            ]);
+      $hackathon = Hackathon::where('id', $id)->first();
+      $prize = new Prize();
+      $prize->name = $request->input("name");
+      $prize->link = $request->input("link");
+      $prize->cost_per_item = $request->input("cost_per_item");
+      $prize->total_per_team = $request->input("total_per_team");
+      $prize->purchased = $request->input("purchased");
+      $prize->delivered = $request->input("delivered");
+      $prize->hackathon()->associate($hackathon);
+      $prize->save();
 
-      return redirect()->action("DashboardController@Prize");
+      return back()->with('success', 'Prize added!');
     }
 
-    public function Sponsor()
+    public function Sponsor($id)
     {
-      $sponsors = json_decode(Sponsor::orderBy('contribution', 'desc')->get());
-      return view('backend/sponsor', compact('sponsors'));
+      $sponsors = Sponsor::where('hackathon_id', $id)->orderBy('contribution', 'desc')->get();
+      if($sponsors != null)
+      {
+        $hackathon = Hackathon::where('id', $id)->first();
+        return view('backend/sponsor', compact('sponsors', 'hackathon'));
+      }
+      return redirect()->action("DashboardController@Dashboard")->withErrors("Event does not exist!");
     }
 
-    public function PostSponsor(Request $request)
+    public function PostSponsor(Request $request, $id)
     {
-
       $this->validate($request, [
         "name" => "required",
         "email" => "required",
@@ -211,30 +231,33 @@ class DashboardController extends Controller
         "contacted" => "required",
         "confirmed" => "required"
       ]);
+      $hackathon = Hackathon::where('id', $id)->first();
+      $sponsor = new Sponsor();
+      $sponsor->name = $request->input("name");
+      $sponsor->email = $request->input("email");
+      $sponsor->phone = $request->input("phone");
+      $sponsor->contribution = $request->input("contribution");
+      $sponsor->contacted = $request->input("contacted");
+      $sponsor->confirmed = $request->input("confirmed");
+      $sponsor->hackathon()->associate($hackathon);
+      $sponsor->save();
 
-      Sponsor::insert(
-            [
-              "name" => $request->input("name"),
-              "email" => $request->input("email"),
-              "phone" => $request->input("phone"),
-              "contribution" => $request->input("contribution"),
-              "contacted" => $request->input("contacted"),
-              "confirmed" => $request->input("confirmed"),
-              "hackathon_id" => 1
-            ]);
-
-      return redirect()->action("DashboardController@Sponsor");
+      return back()->with('success', 'Sponsor added!');
     }
 
-    public function Talk()
+    public function Talk($id)
     {
-      $talks = json_decode(TechTalk::orderBy('start_time', 'asc')->get());
-      return view('backend/talk', compact('talks'));
+      $talks = TechTalk::where('hackathon_id', $id)->orderBy('start_time', 'asc')->get();
+      if($talks != null)
+      {
+        $hackathon = Hackathon::where('id', $id)->first();
+        return view('backend/talk', compact('talks', 'hackathon'));
+      }
+      return redirect()->action("DashboardController@Dashboard")->withErrors("Event does not exist!");
     }
 
-    public function PostTalk(Request $request)
+    public function PostTalk(Request $request, $id)
     {
-
       $this->validate($request, [
         "name" => "required",
         "presenter" => "required",
@@ -243,40 +266,45 @@ class DashboardController extends Controller
         "confirmed" => "required"
       ]);
 
-      TechTalk::insert(
-            [
-              "name" => $request->input("name"),
-              "presenter" => $request->input("presenter"),
-              "start_time" => $request->input("start_time"),
-              "confirmed" => $request->input("confirmed"),
-              "end_time" => $request->input("end_time"),
-              "hackathon_id" => 1
-            ]);
+      $hackathon = Hackathon::where('id', $id)->first();
+      $talk = new TechTalk();
+      $talk->name = $request->input("name");
+      $talk->presenter = $request->input("presenter");
+      $talk->start_time = $request->input("start_time");
+      $talk->confirmed = $request->input("confirmed");
+      $talk->end_time = $request->input("end_time");
+      $talk->hackathon()->associate($hackathon);
+      $talk->save();
 
-      return redirect()->action("DashboardController@Talk");
+      return back()->with('success', 'Tech Talk added!');
     }
 
-    public function Theme()
+    public function Theme($id)
     {
-      $themes = json_decode(ThemeIdea::all());
-      return view('backend/theme', compact('themes'));
+      $themes = ThemeIdea::where('hackathon_id', $id)->get();
+      if($themes != null)
+      {
+        $hackathon = Hackathon::where('id', $id)->first();
+        return view('backend/theme', compact('themes', 'hackathon'));
+      }
+      return redirect()->action("DashboardController@Dashboard")->withErrors("Event does not exist!");
     }
 
-    public function PostTheme(Request $request)
+    public function PostTheme(Request $request, $id)
     {
       $this->validate($request, [
         "name" => "required",
         "confirmed" => "required"
       ]);
 
-      ThemeIdea::insert(
-            [
-              "name" => $request->input("name"),
-              "confirmed" => $request->input("confirmed"),
-              "hackathon_id" => 1
-            ]);
+      $hackathon = Hackathon::where('id', $id)->first();
+      $theme = new ThemeIdea();
+      $theme->name = $request->input("name");
+      $theme->confirmed = $request->input("confirmed");
+      $theme->hackathon()->associate($hackathon);
+      $theme->save();
 
-      return redirect()->action("DashboardController@Theme");
+      return back()->with('success', 'Theme added!');
     }
 
     public function Profile()

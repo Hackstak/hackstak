@@ -16,9 +16,9 @@ class TechTalk extends Model
   protected $fillable = [
       'name', 'start_time', 'end_time', 'presenter', 'confirmed', 'hackathon_id'
     ];
-  public function hackathon_id()
+  public function hackathon()
   {
-    return $this->hasMany('App\Hackathon');
+    return $this->belongsTo('App\Hackathon', 'hackathon_id');
   }
 
 }

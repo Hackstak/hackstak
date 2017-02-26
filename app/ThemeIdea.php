@@ -16,9 +16,9 @@ class ThemeIdea extends Model
   protected $fillable = [
       'name', 'confirmed', 'hackathon_id'
     ];
-  public function hackathon_id()
+  public function hackathon()
   {
-    return $this->hasMany('App\Hackathon');
+    return $this->belongsTo('App\Hackathon', 'hackathon_id');
   }
 
 }
