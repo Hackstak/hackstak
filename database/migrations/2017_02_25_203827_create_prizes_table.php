@@ -23,7 +23,6 @@ class CreatePrizesTable extends Migration
           $table->string('link');
           $table->integer('hackathon_id')->unsigned();
           $table->timestamps();
-
       });
     }
 

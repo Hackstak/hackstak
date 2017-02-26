@@ -18,9 +18,9 @@ class Food extends Model
       'will_deliver', 'confirmed', 'hackathon_id'
     ];
 
-  public function hackathon_id()
+  public function hackathon()
   {
-    return $this->hasMany('App\Hackathon');
+    return $this->belongsTo('App\Hackathon', 'hackathon_id');
   }
 
 }

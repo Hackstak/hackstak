@@ -16,9 +16,9 @@ class Prize extends Model
   protected $fillable = [
       'name', 'cost_per_item', 'total_per_team', 'purchased', 'delivered', 'link', 'hackathon_id'
     ];
-  public function hackathon_id()
+  public function hackathon()
   {
-    return $this->hasMany('App\Hackathon');
+    return $this->belongsTo('App\Hackathon', 'hackathon_id');
   }
 
 }

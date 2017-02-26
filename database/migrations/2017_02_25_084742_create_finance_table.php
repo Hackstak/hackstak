@@ -21,7 +21,6 @@ class CreateFinanceTable extends Migration
         $table->integer('updated_by')->unsigned();
         $table->integer('created_by')->unsigned();
         $table->timestamps();
-
     });
   }
 
