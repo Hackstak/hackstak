@@ -8,17 +8,18 @@
 @endsection
 
 @section('content')
-<div class="col-md-6 content">
+<div class="col-md-9 content">
+  <div class="row">
+<div class="col-md-10 content">
   <div class="dashhead">
     <div class="dashhead-titles">
       <h6 class="dashhead-subtitle">Hackathon</h6>
       <h2 class="dashhead-title">{{ $hackathon->name }}</h2>
     </div>
-
     @include('subviews/messages')
   </div>
 
-  </div>
+</div>
 <div class ="col-md-2  content">
   <div class="dashhead">
     <div class="dashhead-titles">
@@ -28,6 +29,11 @@
         <a href="https://twitter.com/the_real__kyle" class="icon icon-twitter"></a>
     </div>
   </div>
+</div>
+</row>
+</div>
+<div class="hr-divider m-t-md m-b">
+  <h3 class="hr-divider-content hr-divider-heading">Details</h3>
 </div>
 
 
