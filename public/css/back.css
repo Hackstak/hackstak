@@ -20,6 +20,10 @@ form {
   padding-top: 25px;
 }
 
+.row {
+  margin-top: 10px;
+}
+
 .navbar-fixed-top, .navbar-static-top {
     border-bottom: 0;
 }

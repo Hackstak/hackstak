@@ -46,5 +46,7 @@
       </div>
     </nav>
     @yield('content')
+    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
+    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 </body>
 </html>
