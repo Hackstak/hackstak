@@ -21,7 +21,6 @@ class DashboardController extends Controller
     public function Dashboard()
     {
       $hackathons = Attendance::with('user', 'hackathon')->where('user_id', Auth::user()->id)->get();
-      //$hackathons = json_decode(Hackathon::all());
       $color_strings = [ "statcard-info", "statcard-danger", "statcard-primary", "statcard-success", "statcard-warning"];
       return view('backend/dashboard', compact('hackathons', "color_strings"));
     }
